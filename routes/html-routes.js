@@ -1,8 +1,9 @@
+var path = require('path');
+
 module.exports = function(app)
 {
-    app.get('/welcome', function(req, res)
+    app.get('/login', function(req, res)
     {
-        console.log("From the html rotes, testng");
-        res.send("Welcome Screen Content");
+        res.sendFile(path.join(__dirname, "../public/test.html"));
     })
 }
