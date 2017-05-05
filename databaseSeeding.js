@@ -3,6 +3,7 @@ var jobCategories = ["Accounting/Finance", "Automotive", "Carpentry", "General L
 "Construction", "Plumbing", "HVAC", "Consultation", "Landscaping/Gardening", "Graphic Design",
 "Photography", "Culinary Services", "Computer Programming", "Academic Tutoring"];
 
+
 // *******************************************************************************************
 // WARNING ONLY USE ONCE TO SEED DATABASE, ERASE FUNCTION CALL AFTER USING ONCE
 // OR ELSE YOU WILL HAVE A VERY VERY BAD TIME
