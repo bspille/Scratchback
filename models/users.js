@@ -1,10 +1,10 @@
 
-module.exports = function( sequelize, DataTypes ) 
+module.exports = function( sequelize, DataTypes )
 {
-    var Users = sequelize.define("User", 
+    var Users = sequelize.define("User",
     {
-        
-        name: {
+
+        fullName: {
             type: DataTypes.STRING,
             allowNull: false
         },
@@ -13,25 +13,59 @@ module.exports = function( sequelize, DataTypes )
             type: DataTypes.STRING,
             allowNull: false
         },
-        bio: {
+
+        password: {
             type: DataTypes.STRING,
-            allowNull: true
+            allowNull: true //accepting null value for authentication testing. -Aashish
         },
+
+        email: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+
+        jobskill: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+
+        specialization: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+
+        lookingFor: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+
+        jobCost: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+
+        thumbsUp: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+
         zip: {
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        phoneNum: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
-        rating: {
-            type: DataTypes.INTEGER,
-            allowNull: true
-        }
 
-    });
+        avatar: {
+            type: DataTypes.STRING,
+            allowNull: false
+        }
+    },
+
+    {
+
+        timestamps: false,
+        createdAt:false
+
+     });
 
     return Users;
 };
-
