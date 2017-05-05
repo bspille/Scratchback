@@ -16,7 +16,7 @@ module.exports = function( sequelize, DataTypes )
 
         password: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true //accepting null value for authentication testing. -Aashish
         },
 
         email: {
