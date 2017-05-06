@@ -34,30 +34,6 @@ module.exports = function( sequelize, DataTypes )
             allowNull: false
         },
 
-        specialization: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-
-        lookingFor: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-
-        jobCost: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-
-
-            allowNull: false
-        },
-
-        jobskill: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-
         specalization: {
             type: DataTypes.STRING,
             allowNull: false
@@ -72,7 +48,6 @@ module.exports = function( sequelize, DataTypes )
             type: DataTypes.STRING,
             allowNull: false
         },
-
 
         thumbsUp: {
             type: DataTypes.INTEGER,
@@ -93,14 +68,6 @@ module.exports = function( sequelize, DataTypes )
 
     {
 
-        timestamps: false,
-        createdAt:false
-
-
-    },
-
-    {
-  
         timestamps: false,
         createdAt:false
 
