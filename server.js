@@ -4,6 +4,10 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var passport = require('passport');
 var flash    = require('connect-flash');
+=======
+var passport = require('passport'), 
+  LocalStrategy = require('passport-local').Strategy;
+
 
 var PORT = process.env.PORT || 3000;
 
