@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var path = require('path');
-var passport = require('passport'), 
+var passport = require('passport'),
   LocalStrategy = require('passport-local').Strategy;
 
 
@@ -34,6 +34,7 @@ var seed = require('./databaseSeeding.js');
 // });
 
 db.sequelize.sync({ force: true }).then(function() {
+  seed();
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
