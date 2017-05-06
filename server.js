@@ -5,6 +5,7 @@ var path = require('path');
 var passport = require('passport'), 
   LocalStrategy = require('passport-local').Strategy;
 
+
 var PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
