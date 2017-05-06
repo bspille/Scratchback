@@ -20,6 +20,7 @@ require('./routes/api-routes.js')(app);
 require('./routes/html-routes.js')(app);
 
 var db = require('./models');
+var seed = require('./databaseSeeding.js');
 
 // app.listen(process.env.PORT || 3000, function()
 // {
