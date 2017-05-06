@@ -17,10 +17,12 @@ module.exports = function( sequelize, DataTypes )
         password: {
             type: DataTypes.STRING,
             allowNull: true //accepting null value for authentication testing. -Aashish
+
         },
 
         email: {
             type: DataTypes.STRING,
+
             allowNull: false
         },
 
@@ -29,7 +31,7 @@ module.exports = function( sequelize, DataTypes )
             allowNull: false
         },
 
-        specialization: {
+        specalization: {
             type: DataTypes.STRING,
             allowNull: false
         },
@@ -54,6 +56,7 @@ module.exports = function( sequelize, DataTypes )
             allowNull: false
         },
 
+
         avatar: {
             type: DataTypes.STRING,
             allowNull: false
@@ -64,6 +67,7 @@ module.exports = function( sequelize, DataTypes )
 
         timestamps: false,
         createdAt:false
+
 
      });
 
