@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var methodOverride = require('method-override');
 // Passport instantiation
-var passport = require('passport'), 
+var passport = require('passport'),
   LocalStrategy = require('passport-local').Strategy;
 
  var router = express.Router();
@@ -32,11 +32,16 @@ var exphbs = require("express-handlebars");
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
+// Import routes and give the server access to them.
+var routes = require("./controllers/scratchback_controller.js");
+app.use("/", routes);
+
 
 
 // require('./routes/api-routes.js')(app);
 // require('./routes/html-routes.js')(app);
 // require('./controllers/scratchback_controller.js')(app);
+
 
 var db = require('./models');
 var seed = require('./databaseSeeding.js');
@@ -91,6 +96,7 @@ app.use(function (req, res, next) {
 require('./controllers/scratchback_controller.js')(app);
 
 db.sequelize.sync({ force: true }).then(function() {
+  seed();
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
