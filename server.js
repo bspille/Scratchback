@@ -20,10 +20,12 @@ var exphbs = require("express-handlebars");
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
+// Import routes and give the server access to them.
+var routes = require("./controllers/scratchback_controller.js");
+app.use("/", routes);
 
-
-require('./routes/api-routes.js')(app);
-require('./routes/html-routes.js')(app);
+// require('./routes/api-routes.js')(app);
+// require('./routes/html-routes.js')(app);
 
 var db = require('./models');
 var seed = require('./databaseSeeding.js');
