@@ -39,20 +39,7 @@ app.set("view engine", "handlebars");
 var routes = require("./controllers/scratchback_controller.js");
 app.use("/", routes);
 
-<<<<<<< HEAD
 var db = require('./models');
-var seed = require('./databaseSeeding.js');
-
-=======
-
-
-// require('./routes/api-routes.js')(app);
-// require('./routes/html-routes.js')(app);
-// require('./controllers/scratchback_controller.js')(app);
-
-
-var db = require('./models');
-var seed = require('./databaseSeeding.js');
 
 // Express Session
 app.use(session(
@@ -103,10 +90,8 @@ app.use(function (req, res, next) {
 
 require('./controllers/scratchback_controller.js')(app);
 
->>>>>>> master
 db.sequelize.sync({ force: true }).then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
 });
-
