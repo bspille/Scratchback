@@ -31,7 +31,7 @@ module.exports = function( sequelize, DataTypes )
             allowNull: false
         },
 
-        specalization: {
+        specialization: {
             type: DataTypes.STRING,
             allowNull: false
         },
