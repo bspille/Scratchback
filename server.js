@@ -23,21 +23,12 @@ var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-
-// require('./routes/api-routes.js')(app);
-// require('./routes/html-routes.js')(app);
-
 // Import routes and give the server access to them.
 var routes = require("./controllers/scratchback_controller.js");
 app.use("/", routes);
 
 var db = require('./models');
 var seed = require('./databaseSeeding.js');
-
-// app.listen(process.env.PORT || 3000, function()
-// {
-//     console.log("Listening on PORT: " + PORT);
-// });
 
 db.sequelize.sync({ force: true }).then(function() {
   app.listen(PORT, function() {
