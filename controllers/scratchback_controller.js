@@ -18,14 +18,14 @@ router.get("/feed", function(req, res) {
 });
 
 // post route -> back to index
-router.post("/newuser", function(req, res) {
-  user.create(, function(result) {
-    // wrapper for orm.js that using MySQL insert callback will return a log to console,
-    // render back to index with handle
-    console.log(result);
-    res.redirect("/");
-  });
-});
+// router.post("/newuser", function(req, res) {
+//   user.create(, function(result) {
+//     // wrapper for orm.js that using MySQL insert callback will return a log to console,
+//     // render back to index with handle
+//     console.log(result);
+//     res.redirect("/");
+//   });
+// });
 
 // put route -> back to index
 router.put("/profile/update", function(req, res) {
