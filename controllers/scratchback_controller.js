@@ -34,7 +34,7 @@ router.post("/faker", function(req, res) {
   "Photography", "Culinary Services", "Computer Programming", "Academic Tutoring"];
   var dollarSigns = ["$", "$$", "$$$", "$$$$", "$$$$$"];
   var faker = require('faker');
-  
+
   for (var i = 0; i <= 100; i++) {
     var randomName = faker.name.findName();
     var randomUsername = faker.internet.userName();
@@ -61,6 +61,7 @@ router.post("/faker", function(req, res) {
     });
 
   }
+  
 });
 
 // put route -> back to index
