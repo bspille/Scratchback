@@ -9,7 +9,7 @@ var router = express.Router();
 
 
 // get route -> index
-module.exports = function (router) 
+module.exports = function (router)
 {
     // Default root routes to main
     router.get("/", function (req, res)
@@ -41,7 +41,7 @@ module.exports = function (router)
                     if (err) { return next(err); }
                     var errors = {};
                     /*
-        
+
                     var loginMsg = req.flash('loginMessage');
 
                     if (loginMsg.length !== 0 || (!user))
@@ -54,19 +54,19 @@ module.exports = function (router)
                 console.log('test-authLogin-local-login', err, user, info);
                 req.logIn(user, {failureFlash: true}, function(err) {
                     if (err) { return next(err); }
-                    
+
                     // return res.redirect('hello' + user.username);
                     return res.render('hello',{user:user});
 
-                  
-                  
+
+
                 });
             })(req, res, next);
      });
 
-     
 
-     
+
+
 
     //  router.post("/faker", function(req, res) {
     //    // can also use this array elsewhere to populate forms
@@ -106,4 +106,3 @@ module.exports = function (router)
     // });
 
 }
-

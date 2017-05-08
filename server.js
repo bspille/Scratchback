@@ -7,7 +7,7 @@ var methodOverride = require('method-override');
 var passport = require('passport'),
   LocalStrategy = require('passport-local').Strategy;
 
- var router = express.Router();
+
 
  var cookieParser = require('cookie-parser'),
       expressValidator = require('express-validator'),
@@ -33,7 +33,7 @@ var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 // Import routes and give the server access to them.
-var routes = require("./controllers/scratchback_controller.js");
+var router = require("./controllers/scratchback_controller.js");
 // app.use("/", routes);
 
 
@@ -93,11 +93,10 @@ app.use(function (req, res, next) {
   next();
 });
 
-require('./controllers/scratchback_controller.js')(app);
+require('./controllers/scratchback_controller.js')(router);
 
 db.sequelize.sync({ force: true }).then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
 });
-
