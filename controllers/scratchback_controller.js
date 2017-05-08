@@ -1,15 +1,15 @@
-var models = require("../models");
+// var models = require("../models"); // error cannot find models
 
-var passport = require('./auth.js');
+// var passport = require('./auth.js'); // error cannot find auth.js
 
+// require Router
 var express = require('express');
-var app = express();
 var router = express.Router();
 
 
 
 // get route -> index
-module.exports = function (router) 
+module.exports = function (router)
 {
     // Default root routes to main
     router.get("/", function (req, res)
@@ -96,4 +96,3 @@ module.exports = function (router)
     });
 
 }
-
