@@ -74,27 +74,3 @@ module.exports = function( sequelize, DataTypes )
 
     return Users;
 };
-/*
-// module.exports = Users;
-module.exports.getUserByUsername = function(username, callback)
-{
-    
-    console.log("You are here?");
-    var queryUser = {username: username};
-    Users.findOne(queryUser, callback)
-}
-
-module.exports.getUserById = function(id, callback)
-{
-    // var test = require('./users.js');
-    Users.findById(id, callback);
-}
-
-
-module.exports.comparePassword = function(password, callback)
-{
-    // var test = require('./users.js');
-    var queryPass = {password: password};
-    Users.find(queryPass,callback);
-}
-*/
