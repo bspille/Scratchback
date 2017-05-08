@@ -1,26 +1,29 @@
-
+// var db = require('./models');
+// require( './index.js');
+// var Users;
 module.exports = function( sequelize, DataTypes )
 {
-    var Users = sequelize.define("User",
+    var Users = sequelize.define("Users",
     {
-
         fullName: {
             type: DataTypes.STRING,
             allowNull: false
         },
 
-        userName: {
+        username: {
             type: DataTypes.STRING,
             allowNull: false
         },
 
         password: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false //accepting null value for authentication testing. -Aashish
+
         },
 
         email: {
             type: DataTypes.STRING,
+
             allowNull: false
         },
 
@@ -50,9 +53,10 @@ module.exports = function( sequelize, DataTypes )
         },
 
         zip: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false
         },
+
 
         avatar: {
             type: DataTypes.STRING,
@@ -64,6 +68,7 @@ module.exports = function( sequelize, DataTypes )
 
         timestamps: false,
         createdAt:false
+
 
      });
 

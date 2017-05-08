@@ -1,32 +1,46 @@
 
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.min.css"
+  integrity="sha256-n+Ch7oRdzZ9+8/inp+1mK/0Bt4T/2PSmo4L6YGoDiVM="
+  crossorigin="anonymous" />
+
 <div class="columns">
   <div class="column">
-  <h1>Scratchback</h1>
+    <h1>Scratchback Login</h1>
+  </div>
+  <div class="column">
+    <button id="togLogin" type="button">Login</button>
+    <button id="togNewUser" type="button">New user</button>
   </div>
 </div>
 
 <div class="columns">
   <div class="column">
-    <form class="" action="/profile" method="get">
-      <div class="field">
-        <label class="label">User Name</label>
-        <p class="control">
-          <input class="input" type="text" name="userName"placeholder="userName">
-        </p>
-      </div>
-      <div class="field">
-        <label class="label">Password</label>
-        <p class="control">
-          <input class="input" type="text" name="password" placeholder="Password">
-        </p>
-      </div>
-      <div class="field">
-        <input type="submit" name="" value="Submit">
-      </div>
-    </form>
-    <form class="" action="/newuser" method="get">
-      <input type="submit" name="" value="New User">
-    </form>
-
+    {{> login}}
+    {{> newuser}}
   </div>
 </div>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+
+  <script type="text/javascript">
+  // toggle on the login modal
+  $("#togLogin").click(function(){
+    $("#login").attr("class", "modal is-active");
+    console.log("click");
+  });
+
+  // toggle on the new user modal
+  $("#togNewUser").click(function() {
+    $("#newUser").attr("class", "modal is-active");
+  });
+
+  // toggle off the modal
+  $(".delete").click(function() {
+    $("[class='modal is-active']").attr("class", "modal");
+  });
+  </script>
