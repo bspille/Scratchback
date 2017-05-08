@@ -59,7 +59,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-// var passport = require('./controllers/auth');// ({ app:app, passport:passport});
+
 
 
 
