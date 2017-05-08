@@ -3,7 +3,11 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
 var methodOverride = require('method-override');
+<<<<<<< HEAD
 var db = require("module"); // cannot find models // added path.dirname
+=======
+var db = require("./models"); // cannot find models // added path.dirname
+>>>>>>> server
 var exphbs = require("express-handlebars");
 var routes = require("./controllers/scratchback_controller.js");
 
@@ -11,7 +15,7 @@ var routes = require("./controllers/scratchback_controller.js");
 var passport = require('passport'),
   LocalStrategy = require('passport-local').Strategy;
 
- var router = express.Router();// I don't think this is need here??
+ // var router = express.Router();// I don't think this is need here??
 
  var cookieParser = require('cookie-parser'),
       expressValidator = require('express-validator'),
@@ -19,7 +23,7 @@ var passport = require('passport'),
       session = require('express-session');
 
 // data seed file
-// var seed = require('./databaseSeeding.js');// use to seed using the seed file
+// var seed = require('./databaseSeeding.js');// call the function to seed database
 
 // server variables
 var app = express();
@@ -86,7 +90,6 @@ app.use(function (req, res, next) {
 
 // sync to database and start server listener
 db.sequelize.sync({ force: true }).then(function() {
-  seed();
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
