@@ -3,7 +3,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
 var methodOverride = require('method-override');
-var db = require(path.dirname('/models')); // cannot find models // added path.dirname
+var db = require("./models"); // cannot find models // added path.dirname
 var exphbs = require("express-handlebars");
 var routes = require("./controllers/scratchback_controller.js");
 
@@ -11,7 +11,7 @@ var routes = require("./controllers/scratchback_controller.js");
 var passport = require('passport'),
   LocalStrategy = require('passport-local').Strategy;
 
- var router = express.Router();// I don't think this is need here??
+ // var router = express.Router();// I don't think this is need here??
 
  var cookieParser = require('cookie-parser'),
       expressValidator = require('express-validator'),

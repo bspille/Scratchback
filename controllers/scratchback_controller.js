@@ -15,8 +15,8 @@ module.exports = function (router)
     router.get("/", function (req, res)
     {
 
-        res.render("./layouts/main");
-
+        // res.render("./layouts/main"); // route 404 cannot find
+        res.render("index", {});
     });
 
     // Register page
@@ -96,3 +96,4 @@ module.exports = function (router)
     });
 
 }
+module.exports = router;
