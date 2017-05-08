@@ -5,7 +5,7 @@ var path = require('path');
 var methodOverride = require('method-override');
 var db = require("./models"); // cannot find models // added path.dirname
 var exphbs = require("express-handlebars");
-var routes = require("./controllers/scratchback_controller.js");
+// var routes = require("./controllers/scratchback_controller.js");//broken
 
 // Passport instantiation
 var passport = require('passport'),
@@ -40,7 +40,8 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 // sets up the router
-app.use("/", routes);
+// app.use("/", routes);// broken
+require("./controllers/scratchback_controller.js")(app);
 
 // Express Session
 app.use(session(
