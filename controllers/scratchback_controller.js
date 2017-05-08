@@ -9,7 +9,7 @@ var router = express.Router();
 
 
 // get route -> index
-module.exports = function (router)
+module.exports = function (router) 
 {
     // Default root routes to main
     router.get("/", function (req, res)
@@ -96,3 +96,4 @@ module.exports = function (router)
     });
 
 }
+
