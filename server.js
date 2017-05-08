@@ -3,7 +3,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
 var methodOverride = require('method-override');
-var db = require(path.dirname('/models')); // cannot find models // added path.dirname
+var db = require("module"); // cannot find models // added path.dirname
 var exphbs = require("express-handlebars");
 var routes = require("./controllers/scratchback_controller.js");
 
