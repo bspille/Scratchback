@@ -25,10 +25,10 @@ var router = express.Router();
         res.render('newuser');
     });
 
-    // Login Page
-    router.get('/login', function (req, res)
+    // login to the profile
+    router.get('/profile/', function (req, res)
     {
-        res.render('index');
+        res.render('profile');
     });
 
     // POST ROUTE FOR LOGIN AUTHENTICATION
