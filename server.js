@@ -34,7 +34,7 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 // Import routes and give the server access to them.
 var routes = require("./controllers/scratchback_controller.js");
-app.use("/", routes);
+// app.use("/", routes);
 
 
 
@@ -44,7 +44,7 @@ app.use("/", routes);
 
 
 var db = require('./models');
-var seed = require('./databaseSeeding.js');
+// var seed = require('./databaseSeeding.js');
 
 // Express Session
 app.use(session(
@@ -96,7 +96,6 @@ app.use(function (req, res, next) {
 require('./controllers/scratchback_controller.js')(app);
 
 db.sequelize.sync({ force: true }).then(function() {
-  seed();
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
