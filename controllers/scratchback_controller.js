@@ -15,7 +15,7 @@ module.exports = function (router)
     router.get("/", function (req, res)
     {
 
-        res.render("./layouts/main");
+        res.render("index");
 
     });
 
