@@ -32,8 +32,7 @@ module.exports = function (router)
     });
 
     // POST ROUTE FOR LOGIN AUTHENTICATION
-    router.post('/login/',
-    function(req, res, next)
+    router.post('/login', function(req, res, next)
     {
             passport.authenticate('local',
                 function(err, user, info)
@@ -57,6 +56,7 @@ module.exports = function (router)
                 });
             })(req, res, next);
      });
+
 
      router.post("/faker", function(req, res) {
        // can also use this array elsewhere to populate forms
@@ -96,4 +96,3 @@ module.exports = function (router)
     });
 
 }
-module.exports = router;
