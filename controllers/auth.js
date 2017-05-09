@@ -1,18 +1,20 @@
-var passport = require('passport')
-    , LocalStrategy = require('passport-local').Strategy;
+// var passport = require('passport')
+var LocalStrategy = require('passport-local').Strategy;
+// var User = require( '../models/users.js');
+// var models = require("../models");
 
-//var user = require("../models");
+// var user = require("../models");
 
-var models = require("../models");
-
-passport.use(new LocalStrategy
+module.exports = function( passport , models)
+{
+    passport.use('local',new LocalStrategy
         ( { passReqToCallback:true },
           function ( req,username, password, done ) 
           {
-              req.flash = function( m, s){ console.log( m + ":"+s); }
-              console.log( "Making findOne call..." );
-                models.Users.find( { 'username' : username} ).
-                then (  function( user )
+              // req.flash = function( m, s){ console.log( m + ":"+s); }
+              console.log( "User name = " + username + " Password = " + password );
+              models.Users.find( { 'username' : username} ).
+              then (  function( user )
                         {
                         
                             if( !user )
@@ -20,9 +22,12 @@ passport.use(new LocalStrategy
                                 console.log("User not found with name" + username);
                                 return done(null, false, {'message':"user not found."});
                             }
+                            console.log("user: " + user.username + " "+ "pass: " + user.password)
                             if( user.password !== password )
                             {
+
                                 console.log("Password failed.." + username);
+
                                 return done(null, false, {'message':"user not found."})
                             }
                             console.log("Returning user");
@@ -42,31 +47,9 @@ passport.use(new LocalStrategy
           }
     )
 );
-
-// passport.use('login',new LocalStrategy({
-//     passReqToCallback : true
-// },
-//   function(username, password, done) {
-
-//     User.findOne({ 'username': username, 'password': password }, function (err, user) {
-//       done(err, user);
-//     });
-//   }
-// ));
-
-
-// passport.serializeUser(function (user, done) {
-//     // done(null, models.Users.id);
-//     done(null, user);
-// });
-
-// passport.deserializeUser(function (id, done) {
-//     Users.findById(id, function (err, user) {
-//         done(err, user);
-//     });
-// });
-
-passport.serializeUser(function(user, done) {
+////////////// end passport.use
+passport.serializeUser(function(user, done) 
+{
   done(null, user);
 });
 
@@ -74,4 +57,14 @@ passport.deserializeUser(function(user, done) {
   done(null, user);
 });
 
-module.exports = passport;
+
+}; // end module
+
+
+
+
+
+
+
+
+// module.exports = passport;

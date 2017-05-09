@@ -3,23 +3,16 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
 var methodOverride = require('method-override');
-var db = require("./models"); // cannot find models // added path.dirname
-var exphbs = require("express-handlebars");
-var routes = require("./controllers/scratchback_controller.js");
+var db = require("./models");
+
 
 // Passport instantiation
-var passport = require('passport'),
-  LocalStrategy = require('passport-local').Strategy;
-
- // var router = express.Router();// I don't think this is need here??
+var passport = require('passport');
 
  var cookieParser = require('cookie-parser'),
       expressValidator = require('express-validator'),
       flash = require('connect-flash-plus'),
       session = require('express-session');
-
-// data seed file
-var seed = require('./databaseSeeding.js');// call the function to seed database
 
 // server variables
 var app = express();
@@ -38,9 +31,6 @@ app.use(express.static('public'));
 // Set Handlebars.
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
-
-// sets up the router
-app.use("/", routes);
 
 // Express Session
 app.use(session(
@@ -84,9 +74,24 @@ app.use(function (req, res, next) {
   next();
 });
 
+require('./controllers/auth.js')(passport,db);
+require('./controllers/scratchback_controller.js')(app, passport);
+
 // sync to database and start server listener
 db.sequelize.sync({ force: true }).then(function() {
-  seed();
+  db.Users.create({
+      fullName: "Aashish",
+      username: "ap1992",
+      password: 1212,
+      email: "randomEmail",
+      jobskill: "randomJob",
+      specialization: "randomSpecialization",
+      lookingFor: "randomLooking",
+      jobCost: "randomJobCost",
+      thumbsUp: "1",
+      zip: "randomZipCode",
+      avatar: "randomAvatar"
+    });
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
