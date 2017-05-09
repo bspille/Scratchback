@@ -3,24 +3,13 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
 var methodOverride = require('method-override');
-var db = require("./models"); // cannot find models // added path.dirname
+var db = require("./models");
 var exphbs = require("express-handlebars");
-// var routes = require("./controllers/scratchback_controller.js");
-
-// Passport instantiation
 var passport = require('passport');
-  // LocalStrategy = require('passport-local').Strategy;
-// var passport = require('./controllers/auth.js');
-
-//  var router = express.Router();// I don't think this is need here??
-
- var cookieParser = require('cookie-parser'),
+var cookieParser = require('cookie-parser'),
       expressValidator = require('express-validator'),
       flash = require('connect-flash-plus'),
       session = require('express-session');
-
-// data seed file
-// var seed = require('./databaseSeeding.js');// call the function to seed database
 
 // server variables
 var app = express();
@@ -39,23 +28,8 @@ app.use(express.static('public'));
 // Set Handlebars.
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
-// Import routes and give the server access to them.
-// var router = require("./controllers/scratchback_controller.js");
-// app.use("/", routes);
-
-
-
-// require('./routes/api-routes.js')(app);
-// require('./routes/html-routes.js')(app);
-// require('./controllers/scratchback_controller.js')(app);
-
 
 var db = require('./models');
-// var seed = require('./databaseSeeding.js');
-
-
-// sets up the router
-// app.use("/", routes);
 
 // Express Session
 app.use(session(
@@ -102,8 +76,6 @@ app.use(function (req, res, next) {
 require('./controllers/auth.js')(passport,db);
 require('./controllers/scratchback_controller.js')(app, passport);
 
-// require('./controllers/auth.js')(passport);
-// sync to database and start server listener
 db.sequelize.sync({ force: true }).then(function() {
   db.Users.create({
       fullName: "Aashish",
