@@ -1,39 +1,46 @@
+// express server dependancies
 var express = require('express');
-var app = express();
 var bodyParser = require('body-parser');
 var path = require('path');
 var methodOverride = require('method-override');
-// Passport instantiation
-var passport = require('passport'),
-  LocalStrategy = require('passport-local').Strategy;
+var db = require("./models"); // cannot find models // added path.dirname
+var exphbs = require("express-handlebars");
+// var routes = require("./controllers/scratchback_controller.js");
 
- var router = express.Router();
+// Passport instantiation
+var passport = require('passport');
+  // LocalStrategy = require('passport-local').Strategy;
+// var passport = require('./controllers/auth.js');
+
+//  var router = express.Router();// I don't think this is need here??
 
  var cookieParser = require('cookie-parser'),
       expressValidator = require('express-validator'),
       flash = require('connect-flash-plus'),
       session = require('express-session');
 
+// data seed file
+// var seed = require('./databaseSeeding.js');// call the function to seed database
 
+// server variables
+var app = express();
 var PORT = process.env.PORT || 3000;
 
+// setup server parsing
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.use(cookieParser());
 
-
-
+// serves public files
 app.use(express.static('public'));
 
 // Set Handlebars.
-var exphbs = require("express-handlebars");
-
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 // Import routes and give the server access to them.
-var routes = require("./controllers/scratchback_controller.js");
+// var router = require("./controllers/scratchback_controller.js");
 // app.use("/", routes);
 
 
@@ -46,6 +53,10 @@ var routes = require("./controllers/scratchback_controller.js");
 var db = require('./models');
 // var seed = require('./databaseSeeding.js');
 
+
+// sets up the router
+// app.use("/", routes);
+
 // Express Session
 app.use(session(
 {
@@ -57,11 +68,6 @@ app.use(session(
 // // Passport init
 app.use(passport.initialize());
 app.use(passport.session());
-
-
-
-
-
 
 // Express Validation
 app.use(expressValidator({
@@ -93,11 +99,26 @@ app.use(function (req, res, next) {
   next();
 });
 
-require('./controllers/scratchback_controller.js')(app);
+require('./controllers/auth.js')(passport,db);
+require('./controllers/scratchback_controller.js')(app, passport);
 
+// require('./controllers/auth.js')(passport);
+// sync to database and start server listener
 db.sequelize.sync({ force: true }).then(function() {
+  db.Users.create({
+      fullName: "Aashish",
+      username: "ap1992",
+      password: 1212,
+      email: "randomEmail",
+      jobskill: "randomJob",
+      specialization: "randomSpecialization",
+      lookingFor: "randomLooking",
+      jobCost: "randomJobCost",
+      thumbsUp: "1",
+      zip: "randomZipCode",
+      avatar: "randomAvatar"
+    });
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
 });
-
