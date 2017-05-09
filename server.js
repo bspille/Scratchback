@@ -18,7 +18,7 @@ var passport = require('passport'),
       flash = require('connect-flash-plus'),
       session = require('express-session');
 
-// data seed file
+// data seed file // sequelize null error
 // var seed = require('./databaseSeeding.js');// call the function to seed database
 
 // server variables
