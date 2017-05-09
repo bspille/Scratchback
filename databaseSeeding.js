@@ -36,6 +36,7 @@ module.exports = function(){
       specialization: randomSpecialization,
       lookingFor: randomLooking,
       jobCost: randomJobCost,
+      thumbsUp: 0,
       zip: randomZipCode,
       avatar: randomAvatar
     });

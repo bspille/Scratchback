@@ -19,7 +19,7 @@ var passport = require('passport'),
       session = require('express-session');
 
 // data seed file
-// var seed = require('./databaseSeeding.js');// call the function to seed database
+var seed = require('./databaseSeeding.js');// call the function to seed database
 
 // server variables
 var app = express();
@@ -86,6 +86,7 @@ app.use(function (req, res, next) {
 
 // sync to database and start server listener
 db.sequelize.sync({ force: true }).then(function() {
+  seed();
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
