@@ -4,12 +4,9 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var methodOverride = require('method-override');
 var db = require("./models");
-
-
-// Passport instantiation
+var exphbs = require("express-handlebars");
 var passport = require('passport');
-
- var cookieParser = require('cookie-parser'),
+var cookieParser = require('cookie-parser'),
       expressValidator = require('express-validator'),
       flash = require('connect-flash-plus'),
       session = require('express-session');

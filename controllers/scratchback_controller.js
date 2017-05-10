@@ -1,10 +1,10 @@
 
 // get route -> index
-module.exports = function( router ,passport )
+module.exports = function( app ,passport )
 {
 
     // Default root routes to main
-    router.get("/", function (req, res)
+    app.get("/", function (req, res)
     {
 
         res.render("index");
@@ -12,19 +12,19 @@ module.exports = function( router ,passport )
     });
 
     // Register page
-    router.get('/register', function (req, res)
+    app.get('/register', function (req, res)
     {
         res.render('newuser');
     });
 
-    // login to the profile
-    router.get('/profile/', function (req, res)
+    // Login Page
+    app.get('/login', function (req, res)
     {
         res.render('profile');
     });
 
     // POST ROUTE FOR LOGIN AUTHENTICATION
-    router.post('/login/',
+    app.post('/login/',
     function(req, res, next)
     {
         // console.log("PERFORMING POST " + JSON.stringify(req) );
@@ -34,15 +34,6 @@ module.exports = function( router ,passport )
             {
                 if (err) { return next(err); }
                 var errors = {};
-                /*
-                var loginMsg = req.flash('loginMessage');
-
-                if (loginMsg.length !== 0 || (!user))
-                {
-                    errors.loginMsg = loginMsg;
-                     return res.json({  errors: errors });
-                 }
-                 */
             if( user )
             {
                 console.log( "USER IS DEFINED.");
@@ -57,5 +48,4 @@ module.exports = function( router ,passport )
             });
         })(req, res, next);
     });
-
 }
