@@ -17,6 +17,7 @@
       <img src="{{user.avatar}}" alt="">
       <h2>{{user.fullName}}</h2>
     </button>
+    {{> account}}
   </div>
 
   <div class="column">
@@ -60,13 +61,16 @@
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"></script>
   <script type="text/javascript">
+
     $("button").click(function(){
       var action = $(this).attr("name");
+      console.log(action);
       if (action == "acct"){
-        $('"#' + action + '"').attr("class", "modal is-active");
+        $("#acct").attr("class", "modal is-active");
       }
       if (action == "delete"){
-        $("[class='modal is-active']").attr("class", "modal");
+        $('[class="modal is-active"]').attr("class", "modal");
       }
-    })
+    });
+
   </script>
