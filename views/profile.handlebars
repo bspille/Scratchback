@@ -3,6 +3,7 @@
   href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.min.css"
   integrity="sha256-n+Ch7oRdzZ9+8/inp+1mK/0Bt4T/2PSmo4L6YGoDiVM="
   crossorigin="anonymous" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
 
 <div class="columns">
   <div class="column">
@@ -12,39 +13,45 @@
 
 <div class="columns">
   <div class="column">
-    <img src="{{avatar}}" alt="">
-    <span>{{jobCost}}</span>
+    <button type="button" name="acct">
+      <img src="{{user.avatar}}" alt="">
+      <h2>{{user.fullName}}</h2>
+    </button>
   </div>
+
   <div class="column">
-    <div class="columns">
-      <div class="column">
-        <h2>{{user.fullName}}</h2>
-      </div>
-      <div class="column">
-        <span>{{thumbsUp}}</span>
-      </div>
-    </div>
-    <span>Job: {{jobskill}}</span>
-    <br>
-    <span>Specialization: {{specialization}}</span>
-    <div class="">
-      <form class="" action="/search/{{this.id}}?_method=put" method="post">
+
+    <div class="" ng-app="scratch" ng-controller="srchLooking">
+
+      <form class="" action="/search/{{user.id}}?_method=put" method="post">
         <div class="field">
           <label for="">Looking for</label>
           <p class="control">
-            <input type="text" name="lookingFor" value="">
+            <!-- dropdown menu of search options here -->
+            <select class="" name="lookingFor" ng-model="selectedName" ng-options="x for x in jobList">
+            </select>
           </p>
         </div>
         <div class="field">
           <input type="submit" name="" value="Search">
         </div>
       </form>
-      <div id="display"class="">
-        <span>{{jobskill}}</span>
-        {{#each userRtn}}
-        <span>{{this.fullName}}, {{this.email}}, {{this.zip}}</span>
-        {{/each}}
-      </div>
+
+      <!-- display current search parameter here -->
+      <span ng-bind="looking"></span>
+    </div>
+
+    <div class="">
+      <!-- display return from search here -->
+      {{> lookingfor}}
     </div>
   </div>
-</div>
+
+  <script>
+  var app = angular.module('scratch', []);
+  app.controller('srchLooking', function($scope) {
+      $scope.jobList = ["Accounting/Finance", "Automotive", "Carpentry", "General Labor",
+       "Construction", "Plumbing", "HVAC", "Consultation", "Landscaping/Gardening", "Graphic Design",
+       "Photography", "Culinary Services", "Computer Programming", "Academic Tutoring"];
+  });
+  </script>
