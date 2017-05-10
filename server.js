@@ -78,7 +78,7 @@ require('./controllers/scratchback_controller.js')(app, passport);
 db.sequelize.sync({ force: true }).then(function() {
   db.Users.create({
       fullName: "Aashish",
-      username: "ap1992",
+      userName: "ap1992",
       password: 1212,
       email: "randomEmail",
       jobskill: "randomJob",

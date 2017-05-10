@@ -44,7 +44,7 @@ module.exports = function( app ,passport )
             console.log('test-authLogin-local-login', err, user, info);
             req.logIn(user, {failureFlash: true}, function(err) {
                 if (err) { return next(err); }
-                return res.redirect('/users/' + user.username);
+                return res.render('profile', {user: user});
             });
         })(req, res, next);
     });
