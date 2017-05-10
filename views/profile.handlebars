@@ -21,14 +21,14 @@
 
   <div class="column">
 
-    <div class="" ng-app="scratch" ng-controller="srchLooking">
+    <div class="" ng-app="scratch" ng-controller="jobSrch">
 
       <form class="" action="/search/{{user.id}}?_method=put" method="post">
         <div class="field">
           <label for="">Looking for</label>
           <p class="control">
             <!-- dropdown menu of search options here -->
-            <select class="" name="lookingFor" ng-model="selectedName" ng-options="x for x in jobList">
+            <select class="" name="lookingFor" ng-model="job" ng-options="x for x in jobList">
             </select>
           </p>
         </div>
@@ -38,7 +38,7 @@
       </form>
 
       <!-- display current search parameter here -->
-      <span ng-bind="looking"></span>
+      <span ng-bind="job"></span>
     </div>
 
     <div class="">
@@ -46,12 +46,27 @@
       {{> lookingfor}}
     </div>
   </div>
-
-  <script>
-  var app = angular.module('scratch', []);
-  app.controller('srchLooking', function($scope) {
+  <script type="text/javascript">
+    var app = angular.module('scratch', []);
+    app.controller('jobSrch', function($scope) {
       $scope.jobList = ["Accounting/Finance", "Automotive", "Carpentry", "General Labor",
        "Construction", "Plumbing", "HVAC", "Consultation", "Landscaping/Gardening", "Graphic Design",
        "Photography", "Culinary Services", "Computer Programming", "Academic Tutoring"];
   });
+  </script>
+
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    $("button").click(function(){
+      var action = $(this).attr("name");
+      if (action == "acct"){
+        $('"#' + action + '"').attr("class", "modal is-active");
+      }
+      if (action == "delete"){
+        $("[class='modal is-active']").attr("class", "modal");
+      }
+    })
   </script>
