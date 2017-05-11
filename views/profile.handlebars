@@ -3,7 +3,7 @@
   href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.min.css"
   integrity="sha256-n+Ch7oRdzZ9+8/inp+1mK/0Bt4T/2PSmo4L6YGoDiVM="
   crossorigin="anonymous" />
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
 
 <div class="columns">
   <div class="column">
@@ -17,7 +17,7 @@
       <img src="{{user.avatar}}" alt="">
       <h2>{{user.fullName}}</h2>
     </button>
-    {{> account}}
+
   </div>
 
   <div class="column">
@@ -39,7 +39,8 @@
       </form>
 
       <!-- display current search parameter here -->
-      <span ng-bind="job"></span>
+      
+        {{> account }}
     </div>
 
     <div id="display">

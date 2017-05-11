@@ -76,6 +76,8 @@ require('./controllers/scratchback_controller.js')(app, passport);
 
 // sync to database and start server listener
 db.sequelize.sync({ force: true }).then(function() {
+
+  // create known user to work with
   db.Users.create({
       fullName: "Aashish",
       userName: "ap1992",
@@ -89,6 +91,10 @@ db.sequelize.sync({ force: true }).then(function() {
       zip: "randomZipCode",
       avatar: "randomAvatar"
     });
+
+    // call the faker function to seed the database
+    require("./databaseSeeding.js")();
+
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
