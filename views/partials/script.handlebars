@@ -44,7 +44,7 @@ crossorigin="anonymous"></script>
     // ajax
     if (action == "search"){
       event.preventDefault();
-      url = "/search/" + $.param([{name: "id", value: id}, {name: "lookingFor",value: query}]);
+      url = "/search/" + id + "/" + query;
       console.log(url)
       $.ajax({
         url: url,
