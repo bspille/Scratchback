@@ -41,14 +41,7 @@
 
       <!-- display current search parameter here -->
         {{> account }}
-        <span>{{ job }}</span>
-        <br>
-        <span>{{ id }}</span>
-    </div>
-
-    <div id="display" ng-app="srchApp" ng-controller="srchCtrl">
-      <!-- display return from search here -->
-      <span ng-bind="data.fullName"></span>
+        {{> lookingfor }}
     </div>
   </div>
 

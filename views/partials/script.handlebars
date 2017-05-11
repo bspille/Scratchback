@@ -21,22 +21,13 @@ crossorigin="anonymous"></script>
         console.log($scope.found);
       });
     }
-
-    //  console.log($scope.id + '\n' + $scope.job);
-    //  var url = "/search/" + $scope.id + "/" + $scope.job;
-    //  console.log(url);
 });
 
 // jquery
 
   $("button").click(function(event){
     var action = $(this).attr("name");
-        // id = $(this).attr("val"),
-        // url = window.location.origin,
-        // query = $('[name="lookingFor"]').val();
 
-
-    // console.log(id);
     // open modals
     if (action == "togAcct"){
       $("#acct").attr("class", "modal is-active");
@@ -51,34 +42,9 @@ crossorigin="anonymous"></script>
     if (action == "delete"){
       $('[class="modal is-active"]').attr("class", "modal");
     }
-    // ajax
+    // prevent default
     if (action == "search"){
       event.preventDefault();
-      // url = "/search/" + id + "/" + query;
-      // console.log(url);
-      // original ajax
-      // $.ajax({
-      //   url: url,
-      //   method: "PUT",
-      // }).done(function(res){
-      //   console.log(res);
-      //   if (res == false){
-      //     $("#display").html("Could NOT find match");
-      //   }else{
-      //     $("#display").html(JSON.stringify(res));
-      //   }
-      // });
-      // angular syntax
-      // var srch = angular.module("srchApp", []);
-      // srch.controller("srchCtlr", function($scope, $http){
-      //
-      //   console.log(url);
-      //   $http.put(url)
-      //   .then(function(res){
-      //     $scope.data = res.data;
-      //     console.log(res);
-      //   });
-      // });
     }// end of search condition
   });// end of button listener
 

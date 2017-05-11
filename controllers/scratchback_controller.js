@@ -52,7 +52,7 @@ module.exports = function( app ,passport )
     // looking for
     app.put("/search/:id/:lookingFor", function(req, res){
       var query = [req.params.id, req.params.lookingFor];
-      res.json({
+      res.json([{
           fullName: "Aashish",
           userName: "ap1992",
           password: 1212,
@@ -64,6 +64,19 @@ module.exports = function( app ,passport )
           thumbsUp: "1",
           zip: "00000",
           avatar: "http://bulma.io/images/placeholders/128x128.png"
-        });
+        },
+        {
+            fullName: "ben",
+            userName: "bs1984",
+            password: 3333,
+            email: "randomEmail",
+            jobskill: "randomJob",
+            specialization: "randomSpecialization",
+            lookingFor: "randomLooking",
+            jobCost: "$$$",
+            thumbsUp: "1",
+            zip: "00000",
+            avatar: "http://bulma.io/images/placeholders/128x128.png"
+          }]);
     });
 }

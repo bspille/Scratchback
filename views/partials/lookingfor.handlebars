@@ -1,24 +1,24 @@
 <!-- // inclued avatar rating jobcost lookingFor -->
-<div class="box">
+<div class="box" ng-repeat="x in found">
   <article class="media">
     <div class="media-left">
       <figure class="image is-64x64">
-        <img src="{{ avatar }}" alt="http://bulma.io/images/placeholders/128x128.png">
+        <img src="<span ng-bind='x.avatar'></span>" alt="avatar">
       </figure>
-      <p><strong ng-bind="fullName"></strong></p>
+      <p><strong ng-bind="x.fullName"></strong></p>
     </div>
     <div class="media-content">
       <div class="content">
         <p>
-          <strong ng-bind="jobSkill"></strong> <small ng-bind="email"></small> <small ng-bind="jobCost"></small>
+          <strong ng-bind="x.jobSkill"></strong> <small ng-bind="x.email"></small> <small ng-bind="x.jobCost"></small>
           <br>
-          <span ng-bind="lookingFor"></span> <small>Located near</small> <small ng-bind="zip"></small>
+          <span ng-bind="x.lookingFor"></span> <small>Located near</small> <small ng-bind="x.zip"></small>
         </p>
       </div>
     </div>
     <nav class="level">
       <div class="level-left">
-        <small ng-bind="thumbsUp"></small>
+        <small ng-bind="x.thumbsUp"></small>
       </div>
     </nav>
     <div class="media-right">
