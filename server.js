@@ -72,7 +72,7 @@ app.use(function (req, res, next) {
 });
 
 require('./controllers/auth.js')(passport,db);
-require('./controllers/scratchback_controller.js')(app, passport);
+require('./controllers/scratchback_controller.js')(app, passport,db);
 
 // sync to database and start server listener
 db.sequelize.sync({ force: true }).then(function() {
@@ -85,7 +85,7 @@ db.sequelize.sync({ force: true }).then(function() {
       email: "randomEmail",
       jobskill: "randomJob",
       specialization: "randomSpecialization",
-      lookingFor: "randomLooking",
+      lookingFor: "HVAC",
       jobCost: "randomJobCost",
       thumbsUp: "1",
       zip: "randomZipCode",
@@ -93,7 +93,7 @@ db.sequelize.sync({ force: true }).then(function() {
     });
 
     // call the faker function to seed the database
-    require("./databaseSeeding.js")();
+    // require("./databaseSeeding.js")();
 
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
