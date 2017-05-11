@@ -74,5 +74,33 @@ module.exports = function( app ,passport,db )
       })
       
       res.json(query);
+// =======
+//       res.json([{
+//           fullName: "Aashish",
+//           userName: "ap1992",
+//           password: 1212,
+//           email: "randomEmail",
+//           jobskill: "randomJob",
+//           specialization: "randomSpecialization",
+//           lookingFor: "randomLooking",
+//           jobCost: "$$$",
+//           thumbsUp: "1",
+//           zip: "00000",
+//           avatar: "http://bulma.io/images/placeholders/128x128.png"
+//         },
+//         {
+//             fullName: "ben",
+//             userName: "bs1984",
+//             password: 3333,
+//             email: "randomEmail",
+//             jobskill: "randomJob",
+//             specialization: "randomSpecialization",
+//             lookingFor: "randomLooking",
+//             jobCost: "$$$",
+//             thumbsUp: "1",
+//             zip: "00000",
+//             avatar: "http://bulma.io/images/placeholders/128x128.png"
+//           }]);
+// >>>>>>> 5660936940c72b7488aaadd0577f812d80b8decf
     });
 }

@@ -9,22 +9,25 @@ crossorigin="anonymous"></script>
 // angular
 
   var app = angular.module('scratch', []);
-  app.controller('jobSrch', function($scope) {
+  app.controller('jobSrch', function($scope, $http) {
     $scope.jobList = ["Accounting/Finance", "Automotive", "Carpentry", "General Labor",
-     "Construction", "Plumbing", "HVAC", "Consultation", "Landscaping/Gardening", "Graphic Design",
-     "Photography", "Culinary Services", "Computer Programming", "Academic Tutoring"];
+                    "Construction", "Plumbing", "HVAC", "Consultation", "Landscaping/Gardening", "Graphic Design",
+                    "Photography", "Culinary Services", "Computer Programming", "Academic Tutoring"];
+    $scope.srchJobs = function(){
+      $scope.url = "/search/"+ $scope.id + "/" + $scope.job;
+      console.log($scope.url);
+      $http.put($scope.url).then(function(res){
+        $scope.found = res.data;
+        console.log($scope.found);
+      });
+    }
 });
 
 // jquery
 
   $("button").click(function(event){
-    var action = $(this).attr("name"),
-        id = $(this).attr("val"),
-        url = window.location.origin,
-        query = $('[name="lookingFor"]').val();
+    var action = $(this).attr("name");
 
-
-    // console.log(id);
     // open modals
     if (action == "togAcct"){
       $("#acct").attr("class", "modal is-active");
@@ -39,23 +42,10 @@ crossorigin="anonymous"></script>
     if (action == "delete"){
       $('[class="modal is-active"]').attr("class", "modal");
     }
-    // ajax
+    // prevent default
     if (action == "search"){
       event.preventDefault();
-      url = "/search/" + id + "/" + query;
-      console.log(url)
-      $.ajax({
-        url: url,
-        method: "PUT",
-      }).done(function(res){
-        console.log(res);
-        if (res == false){
-          $("#display").html("Could NOT find match");
-        }else{
-          $("#display").html(JSON.stringify(res));
-        }
-      });
-    }
-  });
+    }// end of search condition
+  });// end of button listener
 
 </script>

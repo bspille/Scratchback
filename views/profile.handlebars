@@ -34,18 +34,14 @@
           </p>
         </div>
         <div class="field">
-          <button type="button" name="search" val="{{user.id}}">Search</button>
+          <input type="hidden" name="id" ng-model="id" ng-init="id='{{ user.id }}'">
+          <button type="submit" name="search" ng-click="srchJobs()">Search</button>
         </div>
       </form>
 
       <!-- display current search parameter here -->
-      
         {{> account }}
-    </div>
-
-    <div id="display">
-      <!-- display return from search here -->
-
+        {{> lookingfor }}
     </div>
   </div>
 
