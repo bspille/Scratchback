@@ -1,4 +1,29 @@
 <!-- // inclued avatar rating jobcost lookingFor -->
-
-
-  <span>{{this.fullName}}, {{this.email}}, {{this.zip}}</span>
+<div class="box">
+  <article class="media">
+    <div class="media-left">
+      <figure class="image is-64x64">
+        <img src="{{ avatar }}" alt="http://bulma.io/images/placeholders/128x128.png">
+      </figure>
+      <p><strong ng-bind="fullName"></strong></p>
+    </div>
+    <div class="media-content">
+      <div class="content">
+        <p>
+          <strong ng-bind="jobSkill"></strong> <small ng-bind="email"></small> <small ng-bind="jobCost"></small>
+          <br>
+          <span ng-bind="lookingFor"></span> <small>Located near</small> <small ng-bind="zip"></small>
+        </p>
+      </div>
+    </div>
+    <nav class="level">
+      <div class="level-left">
+        <small ng-bind="thumbsUp"></small>
+      </div>
+    </nav>
+    <div class="media-right">
+      <button class="delete" type="button" name="delMedia"></button>
+      <br>
+    </div>
+  </article>
+</div>

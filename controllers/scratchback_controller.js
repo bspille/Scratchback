@@ -52,6 +52,18 @@ module.exports = function( app ,passport )
     // looking for
     app.put("/search/:id/:lookingFor", function(req, res){
       var query = [req.params.id, req.params.lookingFor];
-      res.json(query);
+      res.json({
+          fullName: "Aashish",
+          userName: "ap1992",
+          password: 1212,
+          email: "randomEmail",
+          jobskill: "randomJob",
+          specialization: "randomSpecialization",
+          lookingFor: "randomLooking",
+          jobCost: "$$$",
+          thumbsUp: "1",
+          zip: "00000",
+          avatar: "http://bulma.io/images/placeholders/128x128.png"
+        });
     });
 }
