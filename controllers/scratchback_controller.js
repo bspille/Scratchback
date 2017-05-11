@@ -1,18 +1,9 @@
-var db = require("../models");
-
-// var passport = require('./auth.js');
-
-var express = require('express');
-// var app = express();
-var router = express.Router();
-
-
-
 // get route -> index
-
+module.exports = function( app ,passport )
+{
 
     // Default root routes to main
-    router.get("/", function (req, res)
+    app.get("/", function (req, res)
     {
 
         res.render("index");
@@ -20,48 +11,44 @@ var router = express.Router();
     });
 
     // Register page
-    router.get('/register', function (req, res)
+    app.get('/register', function (req, res)
     {
         res.render('newuser');
     });
 
-    // login to the profile
-    router.get('/profile/', function (req, res)
+    // Login Page
+    app.get('/login', function (req, res)
     {
-        res.render('profile');
+        res.render('index');
     });
 
     // POST ROUTE FOR LOGIN AUTHENTICATION
-    router.post('/login/',
+    app.post('/login/',
     function(req, res, next)
     {
-            passport.authenticate('local',
-                function(err, user, info)
-                {
-                    if (err) { return next(err); }
-                    var errors = {};
-                    /*
+        // console.log("PERFORMING POST " + JSON.stringify(req) );
 
-                    var loginMsg = req.flash('loginMessage');
-
-                    if (loginMsg.length !== 0 || (!user))
-                    {
-                        errors.loginMsg = loginMsg;
-                        return res.json({  errors: errors });
-                    }
-                    */
-
-                console.log('test-authLogin-local-login', err, user, info);
-                req.logIn(user, {failureFlash: true}, function(err) {
-                    if (err) { return next(err); }
-
-                    // return res.redirect('hello' + user.username);
-                    return res.render('hello',{user:user});
+        passport.authenticate('local',
+            function(err, user, info)
+            {
+                if (err) { return next(err); }
+                var errors = {};
 
 
+            if( user )
+            {
+                console.log( "USER IS DEFINED.");
+            }else
+            {
+                console.log("USER NOT DEFINED.");
+            }
+            console.log('test-authLogin-local-login', err, user, info);
+            req.logIn(user, {failureFlash: true}, function(err) {
+                if (err) { return next(err); }
+                return res.redirect('/users/' + user.username);
+            });
+        })(req, res, next);
+    });
 
-                });
-            })(req, res, next);
-     });
 
-module.exports = router;
+}
