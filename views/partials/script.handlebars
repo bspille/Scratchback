@@ -1,0 +1,63 @@
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+
+<script
+src="https://code.jquery.com/jquery-3.2.1.min.js"
+integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+
+// angular
+
+  var app = angular.module('scratch', []);
+  app.controller('jobSrch', function($scope) {
+    $scope.jobList = ["Accounting/Finance", "Automotive", "Carpentry", "General Labor",
+     "Construction", "Plumbing", "HVAC", "Consultation", "Landscaping/Gardening", "Graphic Design",
+     "Photography", "Culinary Services", "Computer Programming", "Academic Tutoring"];
+});
+
+// jquery
+
+  $("button").click(function(event){
+    var action = $(this).attr("name"),
+        id = $(this).attr("val"),
+        url = window.location.origin,
+        query = $('[name="lookingFor"]').val();
+
+
+    // console.log(id);
+    // open modals
+    if (action == "togAcct"){
+      $("#acct").attr("class", "modal is-active");
+    }
+    if(action == "togLogin"){
+      $("#login").attr("class", "modal is-active");
+    }
+    if(action == "togNewUser"){
+      $("#newUser").attr("class", "modal is-active");
+    }
+    // close modals
+    if (action == "delete"){
+      $('[class="modal is-active"]').attr("class", "modal");
+    }
+    // ajax
+    if (action == "search"){
+      event.preventDefault();
+      url = "/search/" + $.param([{name: "id", value: id}, {name: "lookingFor",value: query}]);
+      console.log(url)
+      $.ajax({
+        url: url,
+        method: "PUT",
+      }).done(function(res){
+        console.log(res);
+        if (res == false){
+          $("#display").html("Could NOT find match");
+        }else{
+          $("#display").html(JSON.stringify(res));
+        }
+      });
+    }
+  });
+
+</script>

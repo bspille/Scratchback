@@ -48,4 +48,10 @@ module.exports = function( app ,passport )
             });
         })(req, res, next);
     });
+
+    // looking for
+    app.put("/search/:id/:lookingFor", function(req, res){
+      var query = [req.params.id, req.params.lookingFor];
+      res.json(query);
+    });
 }
