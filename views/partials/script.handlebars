@@ -9,13 +9,19 @@ crossorigin="anonymous"></script>
 // angular
 
   var app = angular.module('scratch', []);
+  app.config(function($interpolateProvider) {
+    $interpolateProvider.startSymbol('{[{');
+    $interpolateProvider.endSymbol('}]}');
+  });
   app.controller('jobSrch', function($scope, $http) {
     $scope.jobList = ["Accounting/Finance", "Automotive", "Carpentry", "General Labor",
                     "Construction", "Plumbing", "HVAC", "Consultation", "Landscaping/Gardening", "Graphic Design",
                     "Photography", "Culinary Services", "Computer Programming", "Academic Tutoring"];
     $scope.srchJobs = function(){
       $scope.url = "/search/"+ $scope.id + "/" + $scope.job;
-      console.log($scope.url);
+      // console.log($scope.url);
+
+      // http request
       $http.put($scope.url).then(function(res){
         $scope.found = res.data;
         console.log($scope.found);

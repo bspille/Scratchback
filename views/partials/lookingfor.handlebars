@@ -3,22 +3,22 @@
   <article class="media">
     <div class="media-left">
       <figure class="image is-64x64">
-        <img src="<span ng-bind='x.avatar'></span>" alt="avatar">
+        <img ng-src='{[{ x.avatar }]}' alt="avatar">
       </figure>
-      <p><strong ng-bind="x.fullName"></strong></p>
+      <p><strong>{[{ x.fullName }]}</strong></p>
     </div>
     <div class="media-content">
       <div class="content">
         <p>
-          <strong ng-bind="x.jobSkill"></strong> <small ng-bind="x.email"></small> <small ng-bind="x.jobCost"></small>
+          <strong>{[{ x.jobSkill }]}</strong> <small>{[{ x.email }]}</small> <small>{[{ x.jobCost }]}</small>
           <br>
-          <span ng-bind="x.lookingFor"></span> <small>Located near</small> <small ng-bind="x.zip"></small>
+          <span>Looking for: {[{ x.lookingFor }]}</span> <small>Located near</small> <small>{[{ x.zip }]}</small>
         </p>
       </div>
     </div>
     <nav class="level">
       <div class="level-left">
-        <small ng-bind="x.thumbsUp"></small>
+        <small>{[{ x.thumbsUp }]}</small>
       </div>
     </nav>
     <div class="media-right">
