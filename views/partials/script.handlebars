@@ -24,13 +24,17 @@ crossorigin="anonymous"></script>
       // http request
       $http.put($scope.url).then(function(res){
         $scope.found = res.data;
-        console.log($scope.found);
+        // console.log($scope.found);
       });// end of http request
     };// end of srchJobs
     $scope.like = function(x){
+      // updates the thumbsUp in the database
       $scope.found[x].thumbsUp++;
-      $scope.thumbUpURL = "/thumbsup/" + $scope.found[x].id + "/" + $scope.found[x].thumbsUp;
-      console.log($scope.thumbUpURL);
+      $scope.thumbsUpURL = "/thumbsup/" + $scope.found[x].id + "/" + $scope.found[x].thumbsUp;
+      // console.log($scope.thumbUpURL);
+      $http.put($scope.thumbsUpURL).then(function(res){
+        // console.log(res.data);
+      });
     }
 });// end of controller
 
