@@ -3,11 +3,12 @@
   href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.min.css"
   integrity="sha256-n+Ch7oRdzZ9+8/inp+1mK/0Bt4T/2PSmo4L6YGoDiVM="
   crossorigin="anonymous" />
+<link rel="stylesheet" href="../assets/css/scratchback_style.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
 
 <div class="columns">
   <div class="column">
-    
+
   </div>
 </div>
 
@@ -20,22 +21,22 @@
 
   </div>
 
-  <div class="column">
+  <div class="search-display-div column">
 
     <div class="" ng-app="scratch" ng-controller="jobSrch">
 
-      <form class="" action="/search/{{user.id}}?_method=put" method="post">
-        <div class="field">
-          <label for="">Looking for</label>
+      <form class="search-box box" action="/search/{{user.id}}?_method=put" method="post">
+        <div class=" search-inner-div field">
+          <label for="">Select a Category</label>
           <p class="control">
             <!-- dropdown menu of search options here -->
-            <select class="" name="lookingFor" ng-model="job" ng-options="x for x in jobList">
+            <select class="search-dropdown-menu" name="lookingFor" ng-model="job" ng-options="x for x in jobList">
             </select>
           </p>
         </div>
-        <div class="field">
+        <div class="search-button-div field">
           <input type="hidden" name="id" ng-model="id" ng-init="id='{{ user.id }}'">
-          <button type="submit" name="search" ng-click="srchJobs()">Search</button>
+          <button class="search-button" type="submit" name="search" ng-click="srchJobs()">Search</button>
         </div>
       </form>
 
