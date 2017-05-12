@@ -62,18 +62,26 @@ module.exports = function( app ,passport,db )
       
       
 
-      db.Users.find({
+      db.Users.findAll({
         where: 
         {
             // id: idQuery,
             lookingFor: lookingForQuery
         }
+        
       }).then (function(user)
       {
-        console.log(user);
+          var userObject = [];
+        //   console.log(user[0].dataValues);
+          for (i = 0; i<user.length; i++){
+            userObject.push(user[i].dataValues);
+          };
+
+        console.log(userObject);
+        res.json(userObject);
       })
       
-      res.json(query);
+    //   res.json(query);
 // =======
 //       res.json([{
 //           fullName: "Aashish",
