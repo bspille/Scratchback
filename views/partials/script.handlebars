@@ -5,9 +5,7 @@ integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 crossorigin="anonymous"></script>
 
 <script type="text/javascript">
-
 // angular
-
   var app = angular.module('scratch', []);
   // changes the symbols to work around handlebars
   app.config(function($interpolateProvider) {
@@ -32,7 +30,6 @@ crossorigin="anonymous"></script>
 });// end of controller
 
 // jquery
-
   $("button").click(function(event){
     var action = $(this).attr("name");
 
@@ -55,5 +52,4 @@ crossorigin="anonymous"></script>
       event.preventDefault();
     }// end of search condition
   });// end of button listener
-
 </script>
