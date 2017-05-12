@@ -1,4 +1,3 @@
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
 
 <script
@@ -7,25 +6,19 @@ integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 crossorigin="anonymous"></script>
 
 <script type="text/javascript">
-
 // angular
-
   var app = angular.module('scratch', []);
   app.controller('jobSrch', function($scope) {
     $scope.jobList = ["Accounting/Finance", "Automotive", "Carpentry", "General Labor",
      "Construction", "Plumbing", "HVAC", "Consultation", "Landscaping/Gardening", "Graphic Design",
      "Photography", "Culinary Services", "Computer Programming", "Academic Tutoring"];
 });
-
 // jquery
-
   $("button").click(function(event){
     var action = $(this).attr("name"),
         id = $(this).attr("val"),
         url = window.location.origin,
         query = $('[name="lookingFor"]').val();
-
-
     // console.log(id);
     // open modals
     if (action == "togAcct"){
@@ -44,7 +37,7 @@ crossorigin="anonymous"></script>
     // ajax
     if (action == "search"){
       event.preventDefault();
-      url = "/search/" + $.param([{name: "id", value: id}, {name: "lookingFor",value: query}]);
+      url = "/search/" + id + "/" + query;
       console.log(url)
       $.ajax({
         url: url,
@@ -59,5 +52,4 @@ crossorigin="anonymous"></script>
       });
     }
   });
-
 </script>
