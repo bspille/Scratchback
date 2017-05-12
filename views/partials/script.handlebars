@@ -9,10 +9,12 @@ crossorigin="anonymous"></script>
 // angular
 
   var app = angular.module('scratch', []);
+  // changes the symbols to work around handlebars
   app.config(function($interpolateProvider) {
     $interpolateProvider.startSymbol('{[{');
     $interpolateProvider.endSymbol('}]}');
   });
+  // creates the controller
   app.controller('jobSrch', function($scope, $http) {
     $scope.jobList = ["Accounting/Finance", "Automotive", "Carpentry", "General Labor",
                     "Construction", "Plumbing", "HVAC", "Consultation", "Landscaping/Gardening", "Graphic Design",
@@ -24,10 +26,10 @@ crossorigin="anonymous"></script>
       // http request
       $http.put($scope.url).then(function(res){
         $scope.found = res.data;
-        console.log($scope.found);
-      });
-    }
-});
+        // console.log($scope.found);
+      });// end of http request
+    }// end of srchJobs
+});// end of controller
 
 // jquery
 
