@@ -1,6 +1,8 @@
+// var db = require('../models');
+
 
 // get route -> index
-module.exports = function( app ,passport )
+module.exports = function( app ,passport,db )
 {
 
     // Default root routes to main
@@ -50,8 +52,36 @@ module.exports = function( app ,passport )
     });
 
     // looking for
-    app.put("/search/:id/:lookingFor", function(req, res){
+    app.put("/search/:id?/:lookingFor?", function(req, res){
+
+        console.log("YOU ARE IN THIS PUT METHOD");
       var query = [req.params.id, req.params.lookingFor];
-      res.json(query);
+      var idQuery = req.params.id;
+
+      var lookingForQuery = req.params.lookingFor;
+      db.Users.update({lookingFor: lookingForQuery}, {where: {id: idQuery}})
+      .then(function(update){
+        // console.log(update);
+      });
+
+
+      db.Users.findAll({
+        where:
+        {
+            // id: idQuery,
+            jobSkill: lookingForQuery
+        }
+
+      }).then (function(user)
+      {
+          var userObject = [];
+        //   console.log(user[0].dataValues);
+          for (i = 0; i<user.length; i++){
+            userObject.push(user[i].dataValues);
+          };
+
+        // console.log(userObject);
+        res.json(userObject);
+      })
     });
 }

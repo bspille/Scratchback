@@ -1,4 +1,24 @@
 <!-- // inclued avatar rating jobcost lookingFor -->
-
-
-  <span>{{this.fullName}}, {{this.email}}, {{this.zip}}</span>
+<div class="box" ng-repeat="x in found">
+  <article class="media">
+    <div class="media-left">
+      <figure class="image is-64x64">
+        <img ng-src='{[{ x.avatar }]}' alt="avatar">
+      </figure>
+      <p><strong>{[{ x.fullName }]}</strong></p>
+    </div>
+    <div class="media-content">
+      <div class="content">
+        <p>
+          <strong>{[{ x.jobSkill }]}</strong> <small>{[{ x.email }]}</small> <small>{[{ x.jobCost }]}</small>
+          <br>
+          <span>Looking for: {[{ x.lookingFor }]}</span> <small>Located near</small> <small>{[{ x.zip }]}</small>
+        </p>
+      </div>
+    </div>
+    <div class="media-right">
+      <small>{[{ x.thumbsUp }]}</small>
+      <br>
+    </div>
+  </article>
+</div>

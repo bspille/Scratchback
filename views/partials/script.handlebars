@@ -1,4 +1,3 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
 
 <script
 src="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -8,18 +7,32 @@ crossorigin="anonymous"></script>
 <script type="text/javascript">
 // angular
   var app = angular.module('scratch', []);
-  app.controller('jobSrch', function($scope) {
-    $scope.jobList = ["Accounting/Finance", "Automotive", "Carpentry", "General Labor",
-     "Construction", "Plumbing", "HVAC", "Consultation", "Landscaping/Gardening", "Graphic Design",
-     "Photography", "Culinary Services", "Computer Programming", "Academic Tutoring"];
-});
+  // changes the symbols to work around handlebars
+  app.config(function($interpolateProvider) {
+    $interpolateProvider.startSymbol('{[{');
+    $interpolateProvider.endSymbol('}]}');
+  });
+  // creates the controller
+  app.controller('jobSrch', function($scope, $http) {
+    $scope.jobList = ["Finance", "Automotive", "Carpentry", "General Labor",
+                    "Construction", "Plumbing", "HVAC", "Consultation", "Landscaping", "Graphic Design",
+                    "Photography", "Culinary Services", "Computer Programming", "Academic Tutoring"];
+    $scope.srchJobs = function(){
+      $scope.url = "/search/"+ $scope.id + "/" + $scope.job;
+      // console.log($scope.url);
+
+      // http request
+      $http.put($scope.url).then(function(res){
+        $scope.found = res.data;
+        // console.log($scope.found);
+      });// end of http request
+    }// end of srchJobs
+});// end of controller
+
 // jquery
   $("button").click(function(event){
-    var action = $(this).attr("name"),
-        id = $(this).attr("val"),
-        url = window.location.origin,
-        query = $('[name="lookingFor"]').val();
-    // console.log(id);
+    var action = $(this).attr("name");
+
     // open modals
     if (action == "togAcct"){
       $("#acct").attr("class", "modal is-active");
@@ -34,22 +47,9 @@ crossorigin="anonymous"></script>
     if (action == "delete"){
       $('[class="modal is-active"]').attr("class", "modal");
     }
-    // ajax
+    // prevent default
     if (action == "search"){
       event.preventDefault();
-      url = "/search/" + id + "/" + query;
-      console.log(url)
-      $.ajax({
-        url: url,
-        method: "PUT",
-      }).done(function(res){
-        console.log(res);
-        if (res == false){
-          $("#display").html("Could NOT find match");
-        }else{
-          $("#display").html(JSON.stringify(res));
-        }
-      });
-    }
-  });
+    }// end of search condition
+  });// end of button listener
 </script>

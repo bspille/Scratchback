@@ -72,23 +72,53 @@ app.use(function (req, res, next) {
 });
 
 require('./controllers/auth.js')(passport,db);
-require('./controllers/scratchback_controller.js')(app, passport);
+require('./controllers/scratchback_controller.js')(app, passport,db);
 
 // sync to database and start server listener
 db.sequelize.sync({ force: true }).then(function() {
-  db.Users.create({
-      fullName: "Aashish",
-      userName: "ap1992",
-      password: 1212,
-      email: "randomEmail",
-      jobskill: "randomJob",
-      specialization: "randomSpecialization",
-      lookingFor: "randomLooking",
-      jobCost: "randomJobCost",
-      thumbsUp: "1",
-      zip: "randomZipCode",
-      avatar: "randomAvatar"
-    });
+
+  // create known user to work with
+    db.Users.create({
+        fullName: "Aashish",
+        userName: "ap1992",
+        password: 1212,
+        email: "randomEmail",
+        jobskill: "randomJob",
+        specialization: "randomSpecialization",
+        lookingFor: "HVAC",
+        jobCost: "randomJobCost",
+        thumbsUp: "1",
+        zip: "randomZipCode",
+        avatar: "https://goo.gl/images/IYs8DP"
+      },{
+          fullName: "BenS",
+          userName: "bs1984",
+          password: 3333,
+          email: "randomEmail",
+          jobskill: "randomJob",
+          specialization: "randomSpecialization",
+          lookingFor: "HVAC",
+          jobCost: "randomJobCost",
+          thumbsUp: "1",
+          zip: "randomZipCode",
+          avatar: "https://goo.gl/images/aW6LR8"
+        },{
+            fullName: "ChrisC",
+            userName: "cc1992",
+            password: 3232,
+            email: "randomEmail",
+            jobskill: "randomJob",
+            specialization: "randomSpecialization",
+            lookingFor: "HVAC",
+            jobCost: "randomJobCost",
+            thumbsUp: "1",
+            zip: "randomZipCode",
+            avatar: "https://goo.gl/images/Ywn5Su"
+          });
+
+    // call the faker function to seed the database
+    require("./databaseSeeding.js")();
+
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });

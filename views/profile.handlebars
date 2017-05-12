@@ -3,11 +3,11 @@
   href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.min.css"
   integrity="sha256-n+Ch7oRdzZ9+8/inp+1mK/0Bt4T/2PSmo4L6YGoDiVM="
   crossorigin="anonymous" />
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
 
 <div class="columns">
   <div class="column">
-  <h1>Scratchback</h1>
+    
   </div>
 </div>
 
@@ -17,7 +17,7 @@
       <img src="{{user.avatar}}" alt="">
       <h2>{{user.fullName}}</h2>
     </button>
-    {{> account}}
+
   </div>
 
   <div class="column">
@@ -34,17 +34,14 @@
           </p>
         </div>
         <div class="field">
-          <button type="button" name="search" val="{{user.id}}">Search</button>
+          <input type="hidden" name="id" ng-model="id" ng-init="id='{{ user.id }}'">
+          <button type="submit" name="search" ng-click="srchJobs()">Search</button>
         </div>
       </form>
 
       <!-- display current search parameter here -->
-      <span ng-bind="job"></span>
-    </div>
-
-    <div id="display">
-      <!-- display return from search here -->
-
+        {{> account }}
+        {{> lookingfor }}
     </div>
   </div>
 
