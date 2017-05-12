@@ -1,0 +1,64 @@
+
+<script
+src="https://code.jquery.com/jquery-3.2.1.min.js"
+integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+// angular
+  var app = angular.module('scratch', []);
+  // changes the symbols to work around handlebars
+  app.config(function($interpolateProvider) {
+    $interpolateProvider.startSymbol('{[{');
+    $interpolateProvider.endSymbol('}]}');
+  });
+  // creates the controller
+  app.controller('jobSrch', function($scope, $http) {
+    $scope.jobList = ["Finance", "Automotive", "Carpentry", "General Labor",
+                    "Construction", "Plumbing", "HVAC", "Consultation", "Landscaping", "Graphic Design",
+                    "Photography", "Culinary Services", "Computer Programming", "Academic Tutoring"];
+    $scope.srchJobs = function(){
+      $scope.url = "/search/"+ $scope.id + "/" + $scope.job;
+      // console.log($scope.url);
+
+      // http request
+      $http.put($scope.url).then(function(res){
+        $scope.found = res.data;
+        // console.log($scope.found);
+      });// end of http request
+    };// end of srchJobs
+    $scope.like = function(x){
+      // updates the thumbsUp in the database
+      $scope.found[x].thumbsUp++;
+      $scope.thumbsUpURL = "/thumbsup/" + $scope.found[x].id + "/" + $scope.found[x].thumbsUp;
+      // console.log($scope.thumbUpURL);
+      $http.put($scope.thumbsUpURL).then(function(res){
+        // console.log(res.data);
+      });
+    }
+});// end of controller
+
+// jquery
+  $("button").click(function(event){
+    var action = $(this).attr("name");
+
+    // open modals
+    if (action == "togAcct"){
+      $("#acct").attr("class", "modal is-active");
+    }
+    if(action == "togLogin"){
+      $("#login").attr("class", "modal is-active");
+    }
+    if(action == "togNewUser"){
+      $("#newUser").attr("class", "modal is-active");
+    }
+    // close modals
+    if (action == "delete"){
+      $('[class="modal is-active"]').attr("class", "modal");
+    }
+    // prevent default
+    if (action == "search"){
+      event.preventDefault();
+    }// end of search condition
+  });// end of button listener
+</script>
