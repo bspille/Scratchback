@@ -89,7 +89,7 @@ db.sequelize.sync({ force: true }).then(function() {
         jobCost: "randomJobCost",
         thumbsUp: "1",
         zip: "randomZipCode",
-        avatar: "https://goo.gl/images/IYs8DP"
+        avatar: "https://avatars0.githubusercontent.com/u/22531830?v=3&s=400"
       },{
           fullName: "BenS",
           userName: "bs1984",
@@ -101,7 +101,7 @@ db.sequelize.sync({ force: true }).then(function() {
           jobCost: "randomJobCost",
           thumbsUp: "1",
           zip: "randomZipCode",
-          avatar: "https://goo.gl/images/aW6LR8"
+          avatar: ""
         },{
             fullName: "ChrisC",
             userName: "cc1992",

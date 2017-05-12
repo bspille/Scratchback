@@ -62,6 +62,7 @@ module.exports = function( app ,passport,db )
       db.Users.update({lookingFor: lookingForQuery}, {where: {id: idQuery}})
       .then(function(update){
         // console.log(update);
+        res.json(update);
       });
 
 
@@ -84,4 +85,17 @@ module.exports = function( app ,passport,db )
         res.json(userObject);
       })
     });
-}
+
+    // thumbs up incrementer
+    app.put("/thumbsup/:id/:thumbsUp", function(req, res){
+      // res.json([req.params.thumbsUp, req.params.id]);
+      var thumbsUp = req.params.thumbsUp;
+      var id = req.params.id;
+      db.Users.update({thumbsUp: thumbsUp},{where:{id: id}})
+      .then(function(update){
+        // console.log(update);
+        // res.json(update);
+      })
+    });
+
+}// end of module.exports
