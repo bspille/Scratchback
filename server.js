@@ -72,7 +72,7 @@ app.use(function (req, res, next) {
 });
 
 require('./controllers/auth.js')(passport,db);
-require('./controllers/scratchback_controller.js')(app, passport);
+require('./controllers/scratchback_controller.js')(app, passport,db);
 
 // sync to database and start server listener
 db.sequelize.sync({ force: true }).then(function() {
@@ -85,7 +85,7 @@ db.sequelize.sync({ force: true }).then(function() {
       email: "randomEmail",
       jobskill: "randomJob",
       specialization: "randomSpecialization",
-      lookingFor: "randomLooking",
+      lookingFor: "HVAC",
       jobCost: "randomJobCost",
       thumbsUp: "1",
       zip: "randomZipCode",
