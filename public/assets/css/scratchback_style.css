@@ -1,0 +1,82 @@
+/*###############################################################*/
+/*################Style for main.handlebars######################*/
+/*###############################################################*/
+.main-body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.main-div {
+  flex: 1;
+}
+.header-section {
+  background-color: #3D3D3D !important;
+  height: 150px !important;
+  margin-bottom: 10px;
+}
+.header-div {
+  height: 150px !important;
+  padding: 0 !important;
+}
+.logo {
+  height: 120px;
+  width: 120px;
+  margin-top: 15px;
+  margin-left: 15px;
+}
+.header-text {
+  font-family: 'Raleway', sans-serif;
+  font-size: 60px;
+  color: #dadad9 !important;
+  text-align: center;
+  display: inline-block;
+}
+.sticky-footer {
+  height: 175px;
+  background-color: #3D3D3D !important;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  clear: both;
+  margin: 0;
+}
+.footer-container {
+  height: 175px;
+}
+.footer-div {
+  height: 175px;
+  color: #dadad9 !important;
+}
+.footer-strong {
+  color: #07e1f5 !important;
+}
+.footer-logo {
+  color: #07e1f5 !important;
+}
+/*###############################################################*/
+/*################Style for index.handlebars#####################*/
+/*###############################################################*/
+.index-main-div {
+  width: 100%;
+}
+.index-login-box {
+  margin: 0 auto !important;
+  width: 300px;
+  height: 200px;
+}
+.index-inner-div {
+  margin: 0 auto !important;
+}
+.index-inner-text {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+.index-login-button {
+  margin-left: 70px;
+  font-size: 12px;
+}
+.index-newuser-button {
+  font-size: 12px;
+}
