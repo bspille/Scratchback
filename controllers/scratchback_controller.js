@@ -56,14 +56,15 @@ module.exports = function( app ,passport,db )
 
         console.log("YOU ARE IN THIS PUT METHOD");
       var query = [req.params.id, req.params.lookingFor];
+      
       var idQuery = req.params.id;
 
       var lookingForQuery = req.params.lookingFor;
-      db.Users.update({lookingFor: lookingForQuery}, {where: {id: idQuery}})
-      .then(function(update){
-        // console.log(update);
-        res.json(update);
-      });
+    //   db.Users.update({lookingFor: lookingForQuery}, {where: {id: idQuery}})
+    //   .then(function(update){
+    //     // console.log(update);
+    //     res.json(update);
+    //   });
 
 
       db.Users.findAll({
