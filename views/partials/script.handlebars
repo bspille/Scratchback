@@ -14,8 +14,8 @@ crossorigin="anonymous"></script>
   });
   // creates the controller
   app.controller('jobSrch', function($scope, $http) {
-    $scope.jobList = ["Accounting/Finance", "Automotive", "Carpentry", "General Labor",
-                    "Construction", "Plumbing", "HVAC", "Consultation", "Landscaping/Gardening", "Graphic Design",
+    $scope.jobList = ["Finance", "Automotive", "Carpentry", "General Labor",
+                    "Construction", "Plumbing", "HVAC", "Consultation", "Landscaping", "Graphic Design",
                     "Photography", "Culinary Services", "Computer Programming", "Academic Tutoring"];
     $scope.srchJobs = function(){
       $scope.url = "/search/"+ $scope.id + "/" + $scope.job;

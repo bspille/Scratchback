@@ -9,8 +9,8 @@ faker = require('faker')
 
 module.exports = function(){
   // can also use this array elsewhere to populate forms
-  var jobCategories = ["Accounting/Finance", "Automotive", "Carpentry", "General Labor",
-  "Construction", "Plumbing", "HVAC", "Consultation", "Landscaping/Gardening", "Graphic Design",
+  var jobCategories = ["Finance", "Automotive", "Carpentry", "General Labor",
+  "Construction", "Plumbing", "HVAC", "Consultation", "Landscaping", "Graphic Design",
   "Photography", "Culinary Services", "Computer Programming", "Academic Tutoring"];
 
   var dollarSigns = ["$", "$$", "$$$", "$$$$", "$$$$$"];

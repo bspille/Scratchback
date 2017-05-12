@@ -59,14 +59,17 @@ module.exports = function( app ,passport,db )
       var idQuery = req.params.id;
 
       var lookingForQuery = req.params.lookingFor;
-
+      db.Users.update({lookingFor: lookingForQuery}, {where: {id: idQuery}})
+      .then(function(update){
+        // console.log(update);
+      });
 
 
       db.Users.findAll({
         where:
         {
             // id: idQuery,
-            lookingFor: lookingForQuery
+            jobSkill: lookingForQuery
         }
 
       }).then (function(user)
@@ -77,7 +80,7 @@ module.exports = function( app ,passport,db )
             userObject.push(user[i].dataValues);
           };
 
-        console.log(userObject);
+        // console.log(userObject);
         res.json(userObject);
       })
     });
