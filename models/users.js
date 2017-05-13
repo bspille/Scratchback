@@ -37,7 +37,7 @@ module.exports = function( sequelize, DataTypes )
 
         lookingFor: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
 
         jobCost: {
@@ -47,7 +47,7 @@ module.exports = function( sequelize, DataTypes )
 
         thumbsUp: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: true
         },
 
         zip: {

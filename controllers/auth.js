@@ -4,56 +4,74 @@ var LocalStrategy = require('passport-local').Strategy;
 // var models = require("../models");
 
 // var user = require("../models");
+// var db = require('../models');
+var bCrypt = require('bcrypt-nodejs');
 
 module.exports = function( passport , models )
 {
     //LOCAL SIGN UP!!!
-    passport.use('local-signup', new LocalStrategy({
-        
-        usernameField : 'username',
-        passwordField : 'password',
-        passReqToCallback : true // allows us to pass back the entire request to the callback
+    passport.use('local-signup', new LocalStrategy(
+
+    {           
+      usernameField : 'userName',
+      passwordField : 'password',
+      passReqToCallback : true 
     },
-    function(req, username, password, done) {
 
-        // asynchronous
-        
-        process.nextTick(function() {
+    function(req, userName, password, done){
+       console.log("YOU ARE IN FUNCTION OF SIGNUP");
 
-        // find a user whose email is the same as the forms email
-        
-        models.Users.findOne({ 'userName' :  username }, function(err, user) {
-            // if there are any errors, return the error
-            console.log(username);
-            if (err)
-                return done(err);
+      var generateHash = function(password) {
+      return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
+      };
 
-            // check to see if theres already a user with that email
-            if (user) {
-                return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
-            } else {
+       models.Users.find({where: {userName:userName}}).then(function(user){
 
-                // if there is no user with that email
-                // create the user
-                var newUser = new User();
+      if(user)
+      {
+        return done(null, false, {message : 'That email is already taken'} );
+      }
 
-                // set the user's local credentials
-                newUser.local.username    = username;
-                newUser.local.password = newUser.generateHash(password);
+      else
+      {
+        var userPassword = generateHash(password);
+        var data =
+        { userName:userName,
+        password:userPassword,
+        fullName: req.body.fullName,
+        email: req.body.email,
+        jobskill: req.body.jobSkill,
+        specialization: req.body.specialization,
+        jobCost: req.body.jobCost,
+        zip: req.body.zip,
+        avatar: req.body.avatar
+        };
 
-                // save the user
-                newUser.save(function(err) {
-                    if (err)
-                        throw err;
-                    return done(null, newUser);
-                });
-            }
 
-        });    
+        models.Users.create(data).then(function(newUser,created){
+          if(!newUser){
+            return done(null,false);
+          }
+
+          if(newUser){
+            return done(null,newUser);
+            
+          }
+
 
         });
+      }
 
-    }));// END OF SIGNUP !!!
+
+    }); 
+
+
+
+  }
+
+
+
+  ));// END OF LOCAL SIGNUP
 
     //Sign-In LOCAL
     passport.use('local',new LocalStrategy
