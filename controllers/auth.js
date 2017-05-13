@@ -5,9 +5,9 @@ var LocalStrategy = require('passport-local').Strategy;
 
 // var user = require("../models");
 // var db = require('../models');
-var bCrypt = require('bcrypt-nodejs');
 
-module.exports = function( passport , models )
+
+module.exports = function( passport , models, bCrypt )
 {
     //LOCAL SIGN UP!!!
     passport.use('local-signup', new LocalStrategy(
@@ -29,7 +29,7 @@ module.exports = function( passport , models )
 
       if(user)
       {
-        return done(null, false, {message : 'That email is already taken'} );
+        return done(null, false, {message : 'That User is already taken'} );
       }
 
       else
