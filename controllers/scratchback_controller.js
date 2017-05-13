@@ -23,11 +23,30 @@ module.exports = function( app ,passport,db )
     });
 
     // POST ROUTE FOR SIGNUP
-    app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect : '/profile', // redirect to the secure profile section
-        failureRedirect : '/signup', // redirect back to the signup page if there is an error
-        // failureFlash : true // allow flash messages
-    }));
+    app.post('/signup/',
+    function(req, res, next)
+    {
+        // console.log("PERFORMING POST " + JSON.stringify(req) );
+
+        passport.authenticate('local-signup',
+            function(err, user, info)
+            {
+                if (err) { return next(err); }
+                var errors = {};
+            if( user )
+            {
+                console.log( "USER IS DEFINED.");
+            }else
+            {
+                console.log("USER NOT DEFINED.");
+            }
+            console.log('test-authLogin-local-login', err, user, info);
+            req.logIn(user, {failureFlash: true}, function(err) {
+                if (err) { return next(err); }
+                return res.render('profile', {user: user});
+            });
+        })(req, res, next);
+    });
 
     // Login Page
     app.get('/login', function (req, res)

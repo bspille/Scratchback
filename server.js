@@ -9,7 +9,8 @@ var passport = require('passport');
 var cookieParser = require('cookie-parser'),
       expressValidator = require('express-validator'),
       flash = require('connect-flash-plus'),
-      session = require('express-session');
+      session = require('express-session'),
+      bCrypt = require('bcrypt-nodejs');
 
 // server variables
 var app = express();
@@ -71,7 +72,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-require('./controllers/auth.js')(passport,db);
+require('./controllers/auth.js')(passport,db, bCrypt);
 require('./controllers/scratchback_controller.js')(app, passport,db);
 
 // sync to database and start server listener
