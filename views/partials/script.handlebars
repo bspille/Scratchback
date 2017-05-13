@@ -5,18 +5,22 @@ integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 crossorigin="anonymous"></script>
 
 <script type="text/javascript">
-// angular
+
+// angular for profile
   var app = angular.module('scratch', []);
+
   // changes the symbols to work around handlebars
   app.config(function($interpolateProvider) {
     $interpolateProvider.startSymbol('{[{');
     $interpolateProvider.endSymbol('}]}');
   });
+
   // creates the controller
   app.controller('jobSrch', function($scope, $http) {
     $scope.jobList = ["Finance", "Automotive", "Carpentry", "General Labor",
                     "Construction", "Plumbing", "HVAC", "Consultation", "Landscaping", "Graphic Design",
                     "Photography", "Culinary Services", "Computer Programming", "Academic Tutoring"];
+
     $scope.srchJobs = function(){
       $scope.url = "/search/"+ $scope.id + "/" + $scope.job;
       // console.log($scope.url);
@@ -27,6 +31,7 @@ crossorigin="anonymous"></script>
         // console.log($scope.found);
       });// end of http request
     };// end of srchJobs
+
     $scope.like = function(x){
       // updates the thumbsUp in the database
       $scope.found[x].thumbsUp++;

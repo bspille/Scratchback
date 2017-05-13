@@ -98,4 +98,9 @@ module.exports = function( app ,passport,db )
       })
     });
 
+    // new user signup
+    app.post("/newuser", function(req, res){
+      console.log(req.body);
+    });
+
 }// end of module.exports
