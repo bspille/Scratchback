@@ -1,24 +1,24 @@
 <div id="acct" class="modal">
   <div class="modal-background"></div>
   <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">Account Profile</p>
+    <header class="custom-modal-header modal-card-head">
+      <img class="login-image" src="../images/scratchback-logo.png" alt="" /><p class="custom-modal-title modal-card-title">Your Profile</p>
       <button class="delete" name="delete"></button>
     </header>
     <section class="modal-card-body">
       <!-- Content ... -->
-      <h2>{{user.fullName}}</h2>
-      <span>{{user.jobCost}}</span>
+      <h2><strong>{{user.fullName}}</strong></h2>
+      <span><strong>Your average job cost: </strong>{{user.jobCost}}</span>
       <br>
-      <span>{{user.thumbsUp}}</span>
+      <span><strong>Thumbs Ups: </strong>{{user.thumbsUp}}</span>
       <br>
-      <span>Job: {{user.jobskill}}</span>
+      <span><strong>Job: </strong>{{user.jobskill}}</span>
       <br>
-      <span>Specialization: {{user.specialization}}</span>
+      <span><strong>Specialization: </strong>{{user.specialization}}</span>
       <br>
-      <span>Looking for: {[{ job }]}</span>
+      <span><strong>Looking for: </strong>{{ user.lookingFor }}</span>
     </section>
-    <footer class="modal-card-foot">
+    <footer class="custom-modal-footer modal-card-foot">
 
     </footer>
   </div>

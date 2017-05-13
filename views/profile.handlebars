@@ -13,10 +13,10 @@
 </div>
 
 <div class="columns">
-  <div class="column">
-    <button type="button" name="togAcct">
-      <img src="{{user.avatar}}" alt="" width="250">
-      <h2>{{user.fullName}}</h2>
+  <div class="user-div column">
+    <button class="user-button" type="button" name="togAcct">
+      <img src="{{user.avatar}}" alt="" class="user-avatar">
+      <h2>Welcome Back, {{user.fullName}}!</h2>
     </button>
 
   </div>
@@ -45,5 +45,5 @@
         {{> lookingfor }}
     </div>
   </div>
-
+</div>
 {{> script}}

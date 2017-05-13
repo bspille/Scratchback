@@ -17,6 +17,8 @@
   background-color: #3D3D3D !important;
   height: 150px !important;
   margin-bottom: 10px;
+  border-bottom: solid;
+  border-color: #f6f6f6;
 }
 .header-div {
   height: 150px !important;
@@ -43,6 +45,8 @@
   width: 100%;
   clear: both;
   margin: 0;
+  border-top: solid;
+  border-color: #f6f6f6;
 }
 .footer-container {
   height: 175px;
@@ -68,7 +72,10 @@
   margin: 0 auto !important;
   width: 300px;
   height: 200px;
-  background-color: #b8f9ff !important;
+  background-color: #FFFFFF !important;
+  border-style: solid;
+  border-color: #004d4d;
+  color: #004d4d;
 }
 .index-inner-div {
   margin: 0 auto !important;
@@ -82,9 +89,15 @@
 .index-login-button {
   margin-left: 70px;
   font-size: 12px;
+  color: #004d4d;
+  border-style: solid;
+  border-color: #004d4d;
 }
 .index-newuser-button {
   font-size: 12px;
+  color: #004d4d;
+  border-style: solid;
+  border-color: #004d4d;
 }
 /*###############################################################*/
 /*################Style for profile.handlebars###################*/
@@ -96,29 +109,99 @@
   text-align: center;
 }
 .search-dropdown-menu {
-  margin-left: 30%;
+  margin-left: 33%;
 }
 .search-button-div {
-  margin-left: 30%;
+  margin-left: 33%;
 }
 .search-button {
   width: 158px;
 }
 .search-box {
-  background-color: #dadad9 !important;
+  background-color: #FFFFFF !important;
+  border-style: solid;
+  border-color: #004d4d;
+  width: 500px;
+}
+.user-avatar {
+  height: 150px;
+  width: 150px;
+  margin-top: 7px;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-style: solid;
+  border-color: #004d4d;
+}
+.user-div {
+  margin-left: 15px;
+}
+.user-button {
+  border-style: solid;
+  border-color: #004d4d;
+  background-color: #FFFFFF !important;
+  color: #004d4d;
 }
 /*###############################################################*/
 /*###############Style for lookingfor.handlebars#################*/
 /*###############################################################*/
 .profile-box {
-  background-color: #dadad9 !important;
+  background-color: #FFFFFF !important;
   width: 500px;
+  border-style: solid;
+  border-color: #004d4d;
 }
 .avatar-box {
-  background-color: #b8f9ff !important;
+  background-color: #f6f6f6 !important;
   width: 150px !important;
+  border-style: solid;
+  border-color: #dadad9;
+  border-width: 1px;
 }
 .avatar {
   width: 100px;
   height: 100px;
+  border-style: solid;
+  border-color: #004d4d;
+  border-width: 2px;
+}
+.profile-text {
+  color: #004d4d !important;
+}
+.profile-cost {
+  color: #79c879 !important;
+}
+.profile-thumbs-up {
+  margin-left: 0px !important;
+}
+.thumbs-up-counter {
+  color: #004d4d !important;
+  font-size: 20px;
+}
+/*###############################################################*/
+/*#################Style for account.handlebars##################*/
+/*###############################################################*/
+/*###############################################################*/
+/*#########################Style modals##########################*/
+/*###############################################################*/
+.custom-modal-header {
+  background-color: #3D3D3D !important;
+  border-bottom: solid !important;
+  border-color: #f6f6f6 !important;
+}
+.custom-modal-footer {
+  background-color: #3D3D3D !important;
+  border-top: solid !important;
+  border-color: #f6f6f6 !important;
+}
+.custom-modal-title {
+  color: #f6f6f6 !important;
+}
+.login-image {
+  height: 25px;
+  width: 25px;
+  margin-right: 5px;
+}
+.new-user-dropdown {
+  width: 585px;
+  margin-left: 0px !important;
 }
