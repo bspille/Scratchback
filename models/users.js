@@ -1,6 +1,9 @@
 // var db = require('./models');
 // require( './index.js');
 // var Users;
+
+var bcrypt = require('bcrypt-nodejs');
+
 module.exports = function( sequelize, DataTypes )
 {
     var Users = sequelize.define("Users",
@@ -15,15 +18,10 @@ module.exports = function( sequelize, DataTypes )
             allowNull: false
         },
 
-        password: {
-            type: DataTypes.STRING,
-            allowNull: false //accepting null value for authentication testing. -Aashish
-
-        },
+        password: DataTypes.STRING,
 
         email: {
             type: DataTypes.STRING,
-
             allowNull: false
         },
 
@@ -39,7 +37,7 @@ module.exports = function( sequelize, DataTypes )
 
         lookingFor: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
 
         jobCost: {
@@ -49,7 +47,7 @@ module.exports = function( sequelize, DataTypes )
 
         thumbsUp: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: true
         },
 
         zip: {
@@ -70,7 +68,23 @@ module.exports = function( sequelize, DataTypes )
         createdAt:false
 
 
-     });
+     },{
+            freezeTableName: true,
+            instanceMethods:
+            {
+                generateHash: function(password)
+                {
+                    console.log("Generating Hash function!");
+                    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+                },
+                validPassword: function(password)
+                {
+                    return bcrypt.compareSync(password, this.password);
+                }
+            }
+       }
+
+     );
 
     return Users;
 };
