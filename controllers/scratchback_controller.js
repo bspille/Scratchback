@@ -1,5 +1,3 @@
-// var db = require('../models');
-
 
 // get route -> index
 module.exports = function( app ,passport,db )
@@ -14,9 +12,37 @@ module.exports = function( app ,passport,db )
     });
 
     // Register page
-    app.get('/register', function (req, res)
+
+    app.get('/signup', function (req, res)
     {
-        res.render('newuser');
+        console.log("You were in here");
+        res.render('index');
+    });
+
+    // POST ROUTE FOR SIGNUP
+    app.post('/signup/',
+    function(req, res, next)
+    {
+        // console.log("PERFORMING POST " + JSON.stringify(req) );
+
+        passport.authenticate('local-signup',
+            function(err, user, info)
+            {
+                if (err) { return next(err); }
+                var errors = {};
+            if( user )
+            {
+                console.log( "USER IS DEFINED.");
+            }else
+            {
+                console.log("USER NOT DEFINED.");
+            }
+            console.log('test-authLogin-local-login', err, user, info);
+            req.logIn(user, {failureFlash: true}, function(err) {
+                if (err) { return next(err); }
+                return res.render('profile', {user: user});
+            });
+        })(req, res, next);
     });
 
     // Login Page
@@ -56,14 +82,15 @@ module.exports = function( app ,passport,db )
 
         console.log("YOU ARE IN THIS PUT METHOD");
       var query = [req.params.id, req.params.lookingFor];
+
       var idQuery = req.params.id;
 
       var lookingForQuery = req.params.lookingFor;
-      db.Users.update({lookingFor: lookingForQuery}, {where: {id: idQuery}})
-      .then(function(update){
-        // console.log(update);
-        res.json(update);
-      });
+    //   db.Users.update({lookingFor: lookingForQuery}, {where: {id: idQuery}})
+    //   .then(function(update){
+    //     // console.log(update);
+    //     res.json(update);
+    //   });
 
 
       db.Users.findAll({
@@ -98,9 +125,33 @@ module.exports = function( app ,passport,db )
       })
     });
 
-    // new user signup
+    // new user signuo
     app.post("/newuser", function(req, res){
       console.log(req.body);
+      var user = req.body;
+      db.Users.find({userName: req.body.userName}).then (function (user, err){
+          if(user)
+          {
+            console.log("User Already exists!");
+          }else{
+            db.Users.create(
+                {
+                    fullName: req.body.fullName,
+                    userName: req.body.userName,
+                    password: req.body.password,
+                    email: req.body.email,
+                    jobskill: req.body.jobSkill,
+                    specialization: req.body.specialization,
+                    jobCost: req.body.jobCost,
+                    zip: req.body.zip,
+                    avatar: req.body.avatar
+                });
+          }
+
+      });
+
+
+      res.render('profile', {user: user});
     });
 
 }// end of module.exports

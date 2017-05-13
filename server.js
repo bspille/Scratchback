@@ -9,7 +9,15 @@ var passport = require('passport');
 var cookieParser = require('cookie-parser'),
       expressValidator = require('express-validator'),
       flash = require('connect-flash-plus'),
-      session = require('express-session');
+      session = require('express-session'),
+      bCrypt = require('bcrypt-nodejs');
+var faker = require('faker');
+
+var jobCategories = ["Finance", "Automotive", "Carpentry", "General Labor",
+"Construction", "Plumbing", "HVAC", "Consultation", "Landscaping", "Graphic Design",
+"Photography", "Culinary Services", "Computer Programming", "Academic Tutoring"];
+
+var dollarSigns = ["$", "$$", "$$$", "$$$$", "$$$$$"];
 
 // server variables
 var app = express();
@@ -71,50 +79,50 @@ app.use(function (req, res, next) {
   next();
 });
 
-require('./controllers/auth.js')(passport,db);
+require('./controllers/auth.js')(passport,db, bCrypt);
 require('./controllers/scratchback_controller.js')(app, passport,db);
 
 // sync to database and start server listener
 db.sequelize.sync({ force: true }).then(function() {
 
-  // create known user to work with
-    // db.Users.create({
-    //     fullName: "Aashish",
-    //     userName: "ap1992",
-    //     password: 1212,
-    //     email: "randomEmail",
-    //     jobskill: "randomJob",
-    //     specialization: "randomSpecialization",
-    //     lookingFor: "HVAC",
-    //     jobCost: "randomJobCost",
-    //     thumbsUp: "1",
-    //     zip: "randomZipCode",
-    //     avatar: "https://avatars0.githubusercontent.com/u/22531830?v=3&s=400"
-    //   },{
-    //       fullName: "BenS",
-    //       userName: "bs1984",
-    //       password: 3333,
-    //       email: "randomEmail",
-    //       jobskill: "randomJob",
-    //       specialization: "randomSpecialization",
-    //       lookingFor: "HVAC",
-    //       jobCost: "randomJobCost",
-    //       thumbsUp: "1",
-    //       zip: "randomZipCode",
-    //       avatar: ""
-    //     },{
-    //         fullName: "ChrisC",
-    //         userName: "cc1992",
-    //         password: 3232,
-    //         email: "randomEmail",
-    //         jobskill: "randomJob",
-    //         specialization: "randomSpecialization",
-    //         lookingFor: "HVAC",
-    //         jobCost: "randomJobCost",
-    //         thumbsUp: "1",
-    //         zip: "randomZipCode",
-    //         avatar: "https://goo.gl/images/Ywn5Su"
-    //       });
+  // // create known user to work with
+  //   db.Users.create({
+  //       fullName: "Aashish",
+  //       userName: "ap1992",
+  //       password: 1212,
+  //       email: faker.internet.email(),
+  //       jobskill: jobCategories[Math.floor(Math.random() * jobCategories.length)],
+  //       specialization: faker.name.jobType(),
+  //       lookingFor: "HVAC",
+  //       jobCost: dollarSigns[Math.floor(Math.random() * dollarSigns.length)],
+  //       thumbsUp: "1",
+  //       zip: faker.address.zipCode(),
+  //       avatar: "https://avatars0.githubusercontent.com/u/22531830?v=3&s=400"
+  //     },{
+  //         fullName: "BenS",
+  //         userName: "bs1984",
+  //         password: 3333,
+  //         email: faker.internet.email(),
+  //         jobskill: jobCategories[Math.floor(Math.random() * jobCategories.length)],
+  //         specialization: faker.name.jobType(),
+  //         lookingFor: "HVAC",
+  //         jobCost: dollarSigns[Math.floor(Math.random() * dollarSigns.length)],
+  //         thumbsUp: "1",
+  //         zip: faker.address.zipCode(),
+  //         avatar: "https://avatars1.githubusercontent.com/u/22961721?v=3&s=400"
+  //       },{
+  //           fullName: "ChrisC",
+  //           userName: "cc1993",
+  //           password: 3232,
+  //           email: faker.internet.email(),
+  //           jobskill: jobCategories[Math.floor(Math.random() * jobCategories.length)],
+  //           specialization: faker.name.jobType(),
+  //           lookingFor: "HVAC",
+  //           jobCost: dollarSigns[Math.floor(Math.random() * dollarSigns.length)],
+  //           thumbsUp: "1",
+  //           zip: faker.address.zipCode(),
+  //           avatar: "https://avatars0.githubusercontent.com/u/15125965?v=3&s=460"
+  //         });
 
     // call the faker function to seed the database
     // require("./databaseSeeding.js")();

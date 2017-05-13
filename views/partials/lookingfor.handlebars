@@ -1,16 +1,19 @@
 <!-- // inclued avatar rating jobcost lookingFor -->
 <div class="profile-box box" ng-repeat="x in found">
   <article class="media">
-    <div class="avatar-box box media-left">
+    <div class="profile-text avatar-box box media-left">
       <figure class="avatar">
         <img ng-src='{[{ x.avatar }]}' alt="avatar">
       </figure>
       <p><strong>{[{ x.fullName }]}</strong></p>
-      <small>{[{ x.jobCost }]}</small>
-      <small>{[{ x.thumbsUp }]}</small>
+      <small class="profile-cost">{[{ x.jobCost }]}</small>
+      <div class="profile-thumbs-up media-right">
+          <button type="button" name="search" ng-click="like($index)"><i class="fa fa-thumbs-up" aria-hidden="true"></i><small class="thumbs-up-counter">{[{ x.thumbsUp }]}</small></button>
+        <br>
+      </div>
     </div>
     <div class="media-content">
-      <div class="content">
+      <div class="content profile-text">
         <ul>
           <li>I'm looking for: {[{ x.lookingFor }]}</li>
           <li>I'm near: {[{ x.zip }]}</li>
@@ -19,10 +22,7 @@
 
       </div>
     </div>
-    <div class="media-right">
-        <button type="button" name="search" ng-click="like($index)">^</button>
-      <small>{[{ x.thumbsUp }]}</small>
-      <br>
-    </div>
+
   </article>
 </div>
+<br><br><br><br><br><br>
