@@ -125,7 +125,7 @@ db.sequelize.sync({ force: true }).then(function() {
   //         });
 
     // call the faker function to seed the database
-    // require("./databaseSeeding.js")();
+    require("./databaseSeeding.js")();
 
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
