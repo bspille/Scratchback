@@ -15,24 +15,11 @@ module.exports = function( app ,passport,db )
     });
 
     // Register page
-    app.post("/signup", function(req, res){
-      // console.log(req.body);
-      db.Users.create({
-          fullName: req.body.fullName,
-          userName: req.body.userName,
-          password: req.body.password,
-          email: req.body.email,
-          jobskill: req.body.jobSkill,
-          specialization: req.body.specialization,
-          lookingFor: req.body.lookingFor,
-          jobCost: req.body.jobCost,
-          thumbsUp: req.body.thumbsUp,
-          zip: req.body.zip,
-          avatar: req.body.avatar
-        }).then(function(newEntry){
-          // console.log(newEntry);
-          res.render("profile", {user: newEntry});
-        });
+
+    app.get('/signup', function (req, res)
+    {
+        console.log("You were in here");
+        res.render('index');
     });
 
     // POST ROUTE FOR SIGNUP
@@ -122,25 +109,33 @@ module.exports = function( app ,passport,db )
       })
     });
 
-    // new user signup
-    // app.post("/signup", function(req, res){
-    //   // console.log(req.body);
-    //   db.Users.create({
-    //       fullName: req.body.fullName,
-    //       userName: req.body.userName,
-    //       password: req.body.password,
-    //       email: req.body.email,
-    //       jobskill: req.body.jobSkill,
-    //       specialization: req.body.specialization,
-    //       lookingFor: req.body.lookingFor,
-    //       jobCost: req.body.jobCost,
-    //       thumbsUp: req.body.thumbsUp,
-    //       zip: req.body.zip,
-    //       avatar: req.body.avatar
-    //     }).then(function(newEntry){
-    //       console.log(newEntry);
-    //       res.render(newEntry);
-    //     });
-    // });
+    // new user signuo
+    app.post("/newuser", function(req, res){
+      console.log(req.body);
+      var user = req.body;
+      db.Users.find({userName: req.body.userName}).then (function (user, err){
+          if(user)
+          {
+            console.log("User Already exists!");
+          }else{
+            db.Users.create(
+                {
+                    fullName: req.body.fullName,
+                    userName: req.body.userName,
+                    password: req.body.password,
+                    email: req.body.email,
+                    jobskill: req.body.jobSkill,
+                    specialization: req.body.specialization,
+                    jobCost: req.body.jobCost,
+                    zip: req.body.zip,
+                    avatar: req.body.avatar
+                });
+          }
+
+      });
+
+
+      res.render('profile', {user: user});
+    });
 
 }// end of module.exports
