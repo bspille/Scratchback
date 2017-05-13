@@ -5,8 +5,57 @@ var LocalStrategy = require('passport-local').Strategy;
 
 // var user = require("../models");
 
-module.exports = function( passport , models)
+module.exports = function( passport , models )
 {
+    //LOCAL SIGN UP!!!
+    passport.use('local-signup', new LocalStrategy({
+        
+        usernameField : 'username',
+        passwordField : 'password',
+        passReqToCallback : true // allows us to pass back the entire request to the callback
+    },
+    function(req, username, password, done) {
+
+        // asynchronous
+        
+        process.nextTick(function() {
+
+        // find a user whose email is the same as the forms email
+        
+        models.Users.findOne({ 'userName' :  username }, function(err, user) {
+            // if there are any errors, return the error
+            console.log(username);
+            if (err)
+                return done(err);
+
+            // check to see if theres already a user with that email
+            if (user) {
+                return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+            } else {
+
+                // if there is no user with that email
+                // create the user
+                var newUser = new User();
+
+                // set the user's local credentials
+                newUser.local.username    = username;
+                newUser.local.password = newUser.generateHash(password);
+
+                // save the user
+                newUser.save(function(err) {
+                    if (err)
+                        throw err;
+                    return done(null, newUser);
+                });
+            }
+
+        });    
+
+        });
+
+    }));// END OF SIGNUP !!!
+
+    //Sign-In LOCAL
     passport.use('local',new LocalStrategy
         ( { passReqToCallback:true },
           function ( req,username, password, done ) 
@@ -50,7 +99,9 @@ module.exports = function( passport , models)
 ////////////// end passport.use
 passport.serializeUser(function(user, done) 
 {
-  done(null, user);
+    console.log("IN YOUR SERIALIZE");
+    console.log(user.id);
+  done(null, user.id);
 });
 
 passport.deserializeUser(function(user, done) {

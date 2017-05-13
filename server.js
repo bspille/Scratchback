@@ -81,8 +81,8 @@ db.sequelize.sync({ force: true }).then(function() {
     db.Users.create({
         fullName: "Aashish",
         userName: "ap1992",
-        password: 1212,
-        email: "randomEmail",
+        password: 1,
+        email: "randomEmail@gmail.com",
         jobskill: "randomJob",
         specialization: "randomSpecialization",
         lookingFor: "HVAC",
@@ -93,7 +93,7 @@ db.sequelize.sync({ force: true }).then(function() {
       },{
           fullName: "BenS",
           userName: "bs1984",
-          password: 3333,
+          password: "",
           email: "randomEmail",
           jobskill: "randomJob",
           specialization: "randomSpecialization",
@@ -105,7 +105,7 @@ db.sequelize.sync({ force: true }).then(function() {
         },{
             fullName: "ChrisC",
             userName: "cc1992",
-            password: 3232,
+            password: "",
             email: "randomEmail",
             jobskill: "randomJob",
             specialization: "randomSpecialization",
@@ -117,7 +117,7 @@ db.sequelize.sync({ force: true }).then(function() {
           });
 
     // call the faker function to seed the database
-    require("./databaseSeeding.js")();
+    // require("./databaseSeeding.js")();
 
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);

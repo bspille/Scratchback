@@ -1,6 +1,7 @@
 // var db = require('../models');
 
 
+
 // get route -> index
 module.exports = function( app ,passport,db )
 {
@@ -14,10 +15,18 @@ module.exports = function( app ,passport,db )
     });
 
     // Register page
-    app.get('/register', function (req, res)
+    app.get('/signup', function (req, res)
     {
-        res.render('newuser');
+        console.log("You were in here");
+        res.render('profile');
     });
+
+    // POST ROUTE FOR SIGNUP
+    app.post('/signup', passport.authenticate('local-signup', {
+        successRedirect : '/profile', // redirect to the secure profile section
+        failureRedirect : '/signup', // redirect back to the signup page if there is an error
+        // failureFlash : true // allow flash messages
+    }));
 
     // Login Page
     app.get('/login', function (req, res)
@@ -56,7 +65,7 @@ module.exports = function( app ,passport,db )
 
         console.log("YOU ARE IN THIS PUT METHOD");
       var query = [req.params.id, req.params.lookingFor];
-      
+
       var idQuery = req.params.id;
 
       var lookingForQuery = req.params.lookingFor;
