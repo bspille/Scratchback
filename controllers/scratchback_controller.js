@@ -15,10 +15,24 @@ module.exports = function( app ,passport,db )
     });
 
     // Register page
-    app.get('/signup', function (req, res)
-    {
-        console.log("You were in here");
-        res.render('profile');
+    app.post("/signup", function(req, res){
+      // console.log(req.body);
+      db.Users.create({
+          fullName: req.body.fullName,
+          userName: req.body.userName,
+          password: req.body.password,
+          email: req.body.email,
+          jobskill: req.body.jobSkill,
+          specialization: req.body.specialization,
+          lookingFor: req.body.lookingFor,
+          jobCost: req.body.jobCost,
+          thumbsUp: req.body.thumbsUp,
+          zip: req.body.zip,
+          avatar: req.body.avatar
+        }).then(function(newEntry){
+          // console.log(newEntry);
+          res.render("profile", {user: newEntry});
+        });
     });
 
     // POST ROUTE FOR SIGNUP
@@ -109,8 +123,24 @@ module.exports = function( app ,passport,db )
     });
 
     // new user signup
-    app.post("/newuser", function(req, res){
-      console.log(req.body);
-    });
+    // app.post("/signup", function(req, res){
+    //   // console.log(req.body);
+    //   db.Users.create({
+    //       fullName: req.body.fullName,
+    //       userName: req.body.userName,
+    //       password: req.body.password,
+    //       email: req.body.email,
+    //       jobskill: req.body.jobSkill,
+    //       specialization: req.body.specialization,
+    //       lookingFor: req.body.lookingFor,
+    //       jobCost: req.body.jobCost,
+    //       thumbsUp: req.body.thumbsUp,
+    //       zip: req.body.zip,
+    //       avatar: req.body.avatar
+    //     }).then(function(newEntry){
+    //       console.log(newEntry);
+    //       res.render(newEntry);
+    //     });
+    // });
 
 }// end of module.exports

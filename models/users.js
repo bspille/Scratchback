@@ -70,20 +70,20 @@ module.exports = function( sequelize, DataTypes )
 
      },{
             freezeTableName: true,
-            instanceMethods: 
+            instanceMethods:
             {
-                generateHash: function(password) 
+                generateHash: function(password)
                 {
                     console.log("Generating Hash function!");
                     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                 },
-                validPassword: function(password) 
+                validPassword: function(password)
                 {
                     return bcrypt.compareSync(password, this.password);
                 }
             }
        }
-     
+
      );
 
     return Users;
